@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
-require_relative 'lib/contributions'
+$:.unshift('.')
+require 'lib/contributions'
 
 contrib = Contributions.new(ARGV.first || 'akerl')
 
