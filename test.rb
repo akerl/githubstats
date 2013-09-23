@@ -2,11 +2,19 @@
 
 $:.unshift('.')
 require 'lib/contributions'
-require 'rugged'
 
-gitconfig = Rugged::Config
+names = [ARGV.first]
+begin
+    require 'rugged'
+    names << Rugged::Config.global['github.user']
+rescue LoadError
+end
+names << ENV['USER']
 
-contrib = Contributions.new(ARGV.first || gitconfig.global['github.user'] || 'akerl')
+names.reject! {|name| name.nil? }
+abort "No user provided" if names.empty?
+
+contrib = Contributions.new names.first
 
 puts "Contribution data for #{contrib.user}:
     Today's score: #{contrib.today}
