@@ -62,6 +62,12 @@ module Contributions
             @data.reverse.take_while{ |point| point.score > 0 }
         end
 
+        def longest_streak
+            @data.inject(Array.new(1, [])) do |streaks, point|
+                point.score == 0 ? streaks << [] : streaks.last << point ; streaks
+            end.max {|a, b| a.length <=> b.length}
+        end
+
         def max
             @data.max { |a, b| a.score <=> b.score }
         end
