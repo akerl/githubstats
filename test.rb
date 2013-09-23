@@ -2,8 +2,11 @@
 
 $:.unshift('.')
 require 'lib/contributions'
+require 'rugged'
 
-contrib = Contributions.new(ARGV.first || 'akerl')
+gitconfig = Rugged::Config
+
+contrib = Contributions.new(ARGV.first || gitconfig.global['github.user'] || 'akerl')
 
 puts "Contribution data for #{contrib.user}:
     Today's score: #{contrib.today}
