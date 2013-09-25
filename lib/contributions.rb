@@ -15,8 +15,8 @@ module Contributions
         attr_reader :user, :data, :last_updated
         attr_accessor :url
 
-        def initialize(user, autoload=true)
-            @user = user
+        def initialize(user = nil, autoload=true)
+            @user = user || guess_user
             @url = "https://github.com/users/#@user/contributions_calendar_data"
             @data = []
             @last_updated = nil
@@ -37,6 +37,19 @@ module Contributions
 
         def to_h
             @data.inject(Hash.new(0)) { |hash, point| hash[point.date] = point.score ; hash }
+        end
+
+        def guess_user
+            names = []
+            begin
+                    require 'rugged'
+                    names << Rugged::Config.global['github.user']
+            rescue LoadError
+            end
+            names << ENV['USER']
+
+            names.reject! {|name| name.nil? }
+            names.length ? names.first : (raise "Failed to guess username")
         end
 
         def update
