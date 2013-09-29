@@ -3,6 +3,8 @@ require 'json'
 require 'date'
 
 module Github_Stats
+    Version = '0.0.1'
+
     class << self
         def new(*args)
             self::Contributions.new(*args)
