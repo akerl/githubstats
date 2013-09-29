@@ -2,6 +2,13 @@ require 'curb'
 require 'json'
 require 'date'
 
+begin
+    require 'rugged'
+    Using_Rugged = true
+rescue LoadError
+    Using_Rugged = false
+end
+
 module Github_Stats
     Version = '0.0.4'
 
@@ -43,11 +50,7 @@ module Github_Stats
 
         def guess_user
             names = []
-            begin
-                    require 'rugged'
-                    names << Rugged::Config.global['github.user']
-            rescue LoadError
-            end
+            names << Rugged::Config.global['github.user'] if Using_Rugged
             names << ENV['USER']
 
             names.reject! {|name| name.nil? }
