@@ -84,6 +84,17 @@ module Contributions
         def max
             @data.max { |a, b| a.score <=> b.score }
         end
+
+        def quartile_boundaries
+            range = @data.map{ |p| p.score }.uniq.sort.select{ |s| not s.zero? }
+            [0, *(1..3).map { |q| range[ (q * range.length / 4) - 2 ] }, range.last]
+        end
+
+        def quartiles
+            bounds = quartile_boundaries
+            groups = Array.new(5) { Array.new }
+            @data.inject(groups) { |acc, point| acc[bounds.find_index{ |i| point.score <= i }] << point ; acc }
+        end
     end
 end
 
