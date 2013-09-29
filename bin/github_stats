@@ -12,5 +12,5 @@ puts "Contribution data for #{contrib.user}:
     Quartile boundaries: #{contrib.quartile_boundaries}"
 
 # Uses https://github.com/holman/spark
-system('spark', *contrib.data.pop(60).collect { |point| (point.score * 5).to_s })
+system('spark', *contrib.data.pop(60).collect { |point| point.score.to_s })
 
