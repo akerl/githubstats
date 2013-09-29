@@ -3,7 +3,7 @@ require 'json'
 require 'date'
 
 module Github_Stats
-    Version = '0.0.3'
+    Version = '0.0.4'
 
     class << self
         def new(*args)
