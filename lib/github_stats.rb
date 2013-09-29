@@ -2,7 +2,7 @@ require 'curb'
 require 'json'
 require 'date'
 
-module Contributions
+module Github_Stats
     class << self
         def new(*args)
             self::Contributions.new(*args)

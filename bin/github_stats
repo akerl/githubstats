@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require 'contributions'
+require 'github_stats'
 
-contrib = Contributions.new ARGV.first
+contrib = Github_Stats.new ARGV.first
 
 puts "Contribution data for #{contrib.user}:
     Today's score: #{contrib.today}

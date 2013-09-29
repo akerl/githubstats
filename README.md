@@ -1,4 +1,4 @@
-github-stats
+github\_stats
 =========
 
 Grabs Github contribution statistics and presents it in an easily consumable format.
@@ -9,9 +9,9 @@ placeholder
 
 ## Installation
 
-    gem install github-stats
+    gem install github_stats
 
 ## License
 
-github-stats is released under the MIT License. See the bundled LICENSE file for details.
+github\_stats is released under the MIT License. See the bundled LICENSE file for details.
 
