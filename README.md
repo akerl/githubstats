@@ -18,6 +18,8 @@ Contribution data for akerl:
 ▁▁▁▆▁▂▁▁▅▄▁▃▂▁▁▃▁▁▁▁▄▁▂▃█▇▃▁▃▃▂▁▃▂▁▁▁▁▁▁▂▁▁▁▁▂▂▁▃▁▂▁▆▃▂▂▁▁▁▅
 ```
 
+The graph is generated using spark (https://github.com/holman/spark) if you have it installed.
+
 Initializing a new Contributions object can be done as so:
 
 ```
