@@ -17,7 +17,7 @@ rescue LoadError
 end
 
 module Github_Stats
-    Version = '0.0.5'
+    Version = '0.0.6'
 
     class << self
         def new(*args)
