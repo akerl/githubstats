@@ -1,6 +1,8 @@
 github\_stats
 =========
 
+[![Gem Version](https://badge.fury.io/rb/github_stats.png)](http://badge.fury.io/rb/github\_stats)
+
 Grabs Github contribution statistics and presents it in an easily consumable format.
 
 ## Usage

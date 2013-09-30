@@ -1,6 +1,12 @@
+##
+# This module provides a consumable object based on Github's contribution stats
+
 require 'curb'
 require 'json'
 require 'date'
+
+##
+# Rugged is used to check git's configuration for a github user, if available
 
 begin
     require 'rugged'
@@ -8,6 +14,9 @@ begin
 rescue LoadError
     Using_Rugged = false
 end
+
+##
+# Basic_Cache is used to cache computation results, if available
 
 begin
     require 'basic_cache'
@@ -17,19 +26,34 @@ rescue LoadError
 end
 
 module Github_Stats
-    Version = '0.0.7'
+    Version = '0.0.8'
 
     class << self
+        ##
+        # Add .new() helper for creating a new Contributions object
+
         def new(*args)
             self::Contributions.new(*args)
         end
     end
 
+    ##
+    # Datapoint objects provide a more sane date/time point interface
+
     Datapoint = Struct.new(:date, :score)
+
+    ##
+    # Contributions object holds and provides stats data for a user
 
     class Contributions
         attr_reader :user, :data, :last_updated
         attr_accessor :url
+
+        ##
+        # Create a new object
+        # Guesses the user if one is not supplied
+        # Automatically updates if not disabled
+        # Creates a new cache object
 
         def initialize(user = nil, autoload=true)
             @user = user || guess_user
@@ -40,21 +64,31 @@ module Github_Stats
             update if autoload
         end
 
-        def inspect
-            to_s
-        end
+        ##
+        # Print human-readable string about object
 
         def to_s
             "Contributions from #@user"
         end
+        alias :inspect :to_s
+
+        ##
+        # Return raw data directly
 
         def to_a
             @data
         end
 
+        ##
+        # Return Hash where keys are dates and values are scores
+
         def to_h
             @data.inject(Hash.new(0)) { |hash, point| hash[point.date] = point.score ; hash }
         end
+
+        ##
+        # Try to guess username
+        # Checks Rugged if available, then ENV['USER']
 
         def guess_user
             names = []
@@ -64,6 +98,9 @@ module Github_Stats
             names.reject! {|name| name.nil? }
             names.length ? names.first : (raise "Failed to guess username")
         end
+
+        ##
+        # Update the data based on Github
 
         def update
             begin
@@ -81,13 +118,22 @@ module Github_Stats
             @cache.clear
         end
 
+        ##
+        # Return today's score
+
         def today
             @cache.cache { to_h[Date.today] }
         end
 
+        ##
+        # Return the current streak
+
         def streak
             @cache.cache { @data.reverse.take_while{ |point| point.score > 0 } }
         end
+
+        ##
+        # Return the longest streak
 
         def longest_streak
             @cache.cache do
@@ -97,9 +143,15 @@ module Github_Stats
             end
         end
 
+        ##
+        # Return the highest score in the dataset
+
         def max
             @cache.cache { @data.max { |a, b| a.score <=> b.score } }
         end
+
+        ##
+        # Return the break-points between the quartiles
 
         def quartile_boundaries
             @cache.cache do
@@ -107,6 +159,9 @@ module Github_Stats
                 (1..3).map { |q| range[(q * range.length / 4) - 2] }.unshift(0).push(range.last)
             end
         end
+
+        ##
+        # Return the quartiles
 
         def quartiles
             @cache.cache do
@@ -117,9 +172,20 @@ module Github_Stats
         end
     end
 
+    ##
+    # The Null_Cache is used if Basic_Cache is not available
+    # As per the name, it does not cache anything
+
     class Null_Cache
+
+        ##
+        # Clear is a no-op, since there is no cache
+
         def clear
         end
+
+        ##
+        # Call the provided block and return its value
 
         def cache(key = nil, &code)
             code.call
