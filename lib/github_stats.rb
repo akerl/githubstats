@@ -17,7 +17,7 @@ rescue LoadError
 end
 
 module Github_Stats
-    Version = '0.0.6'
+    Version = '0.0.7'
 
     class << self
         def new(*args)
@@ -104,7 +104,7 @@ module Github_Stats
         def quartile_boundaries
             @cache.cache do
                 range = @data.map{ |p| p.score }.uniq.sort.select{ |s| not s.zero? }
-                [0, *(1..3).map { |q| range[ (q * range.length / 4) - 2 ] }, range.last]
+                (1..3).map { |q| range[(q * range.length / 4) - 2] }.unshift(0).push(range.last)
             end
         end
 

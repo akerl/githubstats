@@ -16,5 +16,6 @@ Gem::Specification.new do |s|
     s.executables = ['github_stats']
 
     s.add_runtime_dependency 'curb'
+    s.add_runtime_dependency 'json'
 end
 
