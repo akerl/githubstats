@@ -9,8 +9,15 @@ rescue LoadError
     Using_Rugged = false
 end
 
+begin
+    require 'basic_cache'
+    Using_Cache = true
+rescue LoadError
+    Using_Cache = false
+end
+
 module Github_Stats
-    Version = '0.0.4'
+    Version = '0.0.5'
 
     class << self
         def new(*args)
@@ -29,6 +36,7 @@ module Github_Stats
             @url = "https://github.com/users/#@user/contributions_calendar_data"
             @data = []
             @last_updated = nil
+            @cache = Using_Cache ? Basic_Cache.new : Github_Stats::Null_Cache.new
             update if autoload
         end
 
@@ -70,35 +78,51 @@ module Github_Stats
             end
             @data = new_data
             @last_updated = DateTime.now
+            @cache.clear
         end
 
         def today
-            to_h[Date.today]
+            @cache.cache { to_h[Date.today] }
         end
 
         def streak
-            @data.reverse.take_while{ |point| point.score > 0 }
+            @cache.cache { @data.reverse.take_while{ |point| point.score > 0 } }
         end
 
         def longest_streak
-            @data.inject(Array.new(1, [])) do |streaks, point|
-                point.score == 0 ? streaks << [] : streaks.last << point ; streaks
-            end.max {|a, b| a.length <=> b.length}
+            @cache.cache do
+                @data.inject(Array.new(1, [])) do |streaks, point|
+                    point.score == 0 ? streaks << [] : streaks.last << point ; streaks
+                end.max {|a, b| a.length <=> b.length}
+            end
         end
 
         def max
-            @data.max { |a, b| a.score <=> b.score }
+            @cache.cache { @data.max { |a, b| a.score <=> b.score } }
         end
 
         def quartile_boundaries
-            range = @data.map{ |p| p.score }.uniq.sort.select{ |s| not s.zero? }
-            [0, *(1..3).map { |q| range[ (q * range.length / 4) - 2 ] }, range.last]
+            @cache.cache do
+                range = @data.map{ |p| p.score }.uniq.sort.select{ |s| not s.zero? }
+                [0, *(1..3).map { |q| range[ (q * range.length / 4) - 2 ] }, range.last]
+            end
         end
 
         def quartiles
-            bounds = quartile_boundaries
-            groups = Array.new(5) { Array.new }
-            @data.inject(groups) { |acc, point| acc[bounds.find_index{ |i| point.score <= i }] << point ; acc }
+            @cache.cache do
+                bounds = quartile_boundaries
+                groups = Array.new(5) { Array.new }
+                @data.inject(groups) { |acc, point| acc[bounds.find_index{ |i| point.score <= i }] << point ; acc }
+            end
+        end
+    end
+
+    class Null_Cache
+        def clear
+        end
+
+        def cache(key = nil, &code)
+            code.call
         end
     end
 end
