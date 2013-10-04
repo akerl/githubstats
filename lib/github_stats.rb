@@ -17,7 +17,7 @@ rescue LoadError
 end
 
 module Github_Stats
-    Version = '0.0.7'
+    Version = '0.0.8'
 
     class << self
         def new(*args)
@@ -114,6 +114,12 @@ module Github_Stats
                 groups = Array.new(5) { Array.new }
                 @data.inject(groups) { |acc, point| acc[bounds.find_index{ |i| point.score <= i }] << point ; acc }
             end
+        end
+
+        def quartile(score)
+            bounds = quartile_boundaries
+            return nil if score > quartile_boundaries.last or score < 0
+            bounds.count { |bound| score > bound }
         end
     end
 
