@@ -26,7 +26,7 @@ rescue LoadError
 end
 
 module Github_Stats
-    Version = '0.1.1'
+    Version = '0.1.2'
 
     class << self
         ##
@@ -191,7 +191,6 @@ module Github_Stats
 
         def quartile(score, github = false)
             bounds = quartile_boundaries(github)
-            puts "The bounds are #{bounds}"
             return nil if score > quartile_boundaries(github).last or score < 0
             bounds.count { |bound| score > bound }
         end
