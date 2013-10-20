@@ -160,7 +160,7 @@ module Github_Stats
         ##
         # Return the break-points between the quartiles
 
-        def quartile_boundaries(github = false)
+        def quartile_boundaries(github = true)
             @cache.cache('quartile_boundaries' + (github ? '-github' : '')) do
                 if github
                     magic_calc = gh_quartile_magic
