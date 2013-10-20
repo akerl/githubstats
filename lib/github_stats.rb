@@ -26,7 +26,7 @@ rescue LoadError
 end
 
 module Github_Stats
-    Version = '0.1.0'
+    Version = '0.1.1'
 
     class << self
         ##
