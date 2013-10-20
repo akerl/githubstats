@@ -80,6 +80,11 @@ Contribution data for akerl:
 
     gem install github_stats
 
+## Contributors
+
+* [Lee Matos](https://github.com/leematos) for help deconstructing Github's fancy Javascript math
+* [Jon Chen](https://github.com/fly) for providing encouragement while borrowing my code
+
 ## License
 
 github\_stats is released under the MIT License. See the bundled LICENSE file for details.
