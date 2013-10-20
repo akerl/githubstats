@@ -26,7 +26,7 @@ rescue LoadError
 end
 
 module Github_Stats
-    Version = '0.1.2'
+    Version = '0.1.3'
 
     class << self
         ##
@@ -164,10 +164,8 @@ module Github_Stats
             @cache.cache('quartile_boundaries' + (github ? '-github' : '')) do
                 if github
                     magic_calc = gh_quartile_magic
-                    puts "The magic value is #{magic_calc}"
                     data = @data.select { |x| (mean - x.score).abs / magic_calc <= 3.77972616981 }
                 else
-                    puts "Not using github"
                     data = @data
                 end
                 range = data.map{ |p| p.score }.uniq.sort.select{ |s| not s.zero? }
