@@ -9,7 +9,8 @@ puts "Contribution data for #{contrib.user}:
     Current streak: #{contrib.streak.length}
     Longest streak: #{contrib.longest_streak.length}
     High score: #{contrib.max.score} on #{contrib.max.date}
-    Quartile boundaries: #{contrib.quartile_boundaries.inspect}"
+    Quartile boundaries: #{contrib.quartile_boundaries.inspect}
+    Github-adjusted boundaries: #{contrib.quartile_boundaries(github=true).inspect}"
 
 # Uses https://github.com/holman/spark
 system('spark', *contrib.data.pop(60).collect { |point| point.score.to_s })

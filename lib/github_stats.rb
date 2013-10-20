@@ -26,7 +26,7 @@ rescue LoadError
 end
 
 module Github_Stats
-    Version = '0.0.9'
+    Version = '0.1.0'
 
     class << self
         ##
@@ -151,30 +151,56 @@ module Github_Stats
         end
 
         ##
+        # Return the mean score in the dataset
+
+        def mean
+            @cache.cache { @data.inject(0){ |acc, x| x.score.to_f + acc } / @data.size }
+        end
+
+        ##
         # Return the break-points between the quartiles
 
-        def quartile_boundaries
-            @cache.cache do
-                range = @data.map{ |p| p.score }.uniq.sort.select{ |s| not s.zero? }
-                (1..3).map { |q| range[(q * range.length / 4) - 2] }.unshift(0).push(range.last)
+        def quartile_boundaries(github = false)
+            @cache.cache('quartile_boundaries' + (github ? '-github' : '')) do
+                if github
+                    magic_calc = gh_quartile_magic
+                    puts "The magic value is #{magic_calc}"
+                    data = @data.select { |x| (mean - x.score).abs / magic_calc <= 3.77972616981 }
+                else
+                    puts "Not using github"
+                    data = @data
+                end
+                range = data.map{ |p| p.score }.uniq.sort.select{ |s| not s.zero? }
+                (1..3).map { |q| range[(q * range.length / 4) - 1] }.unshift(0).push(max.score)
             end
         end
 
         ##
         # Return the quartiles
 
-        def quartiles
-            @cache.cache do
-                bounds = quartile_boundaries
+        def quartiles(github = false)
+            @cache.cache('quartiles' + (github ? '-github' : '')) do
+                bounds = quartile_boundaries(github)
                 groups = Array.new(5) { Array.new }
                 @data.inject(groups) { |acc, point| acc[bounds.find_index{ |i| point.score <= i }] << point ; acc }
             end
         end
 
-        def quartile(score)
-            bounds = quartile_boundaries
-            return nil if score > quartile_boundaries.last or score < 0
+        ##
+        # Return which quartile a score is in
+
+        def quartile(score, github = false)
+            bounds = quartile_boundaries(github)
+            puts "The bounds are #{bounds}"
+            return nil if score > quartile_boundaries(github).last or score < 0
             bounds.count { |bound| score > bound }
+        end
+
+        ##
+        # Return Github's magic value (Used for calculating quartiles)
+
+        def gh_quartile_magic
+            @cache.cache { Math.sqrt(@data.inject(0) { |acc, x| (x.score.to_f - mean)**2 + acc } / (@data.size - 1)) }
         end
     end
 
