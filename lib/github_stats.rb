@@ -26,7 +26,7 @@ rescue LoadError
 end
 
 module Github_Stats
-    Version = '0.1.4'
+    Version = '0.1.5'
 
     class << self
         ##
@@ -169,7 +169,7 @@ module Github_Stats
                     data = @data
                 end
                 range = data.map{ |p| p.score }.uniq.sort.select{ |s| not s.zero? }
-                (1..3).map { |q| range[(q * range.length / 4) - 1] }.unshift(0).push(max.score)
+                (1..3).map { |q| range[(q * range.length / 4) - 2] }.unshift(0).push(max.score)
             end
         end
 
