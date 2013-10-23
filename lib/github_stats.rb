@@ -26,7 +26,7 @@ rescue LoadError
 end
 
 module Github_Stats
-    Version = '0.1.3'
+    Version = '0.1.4'
 
     class << self
         ##
@@ -176,7 +176,7 @@ module Github_Stats
         ##
         # Return the quartiles
 
-        def quartiles(github = false)
+        def quartiles(github = true)
             @cache.cache('quartiles' + (github ? '-github' : '')) do
                 bounds = quartile_boundaries(github)
                 groups = Array.new(5) { Array.new }
@@ -187,7 +187,7 @@ module Github_Stats
         ##
         # Return which quartile a score is in
 
-        def quartile(score, github = false)
+        def quartile(score, github = true)
             bounds = quartile_boundaries(github)
             return nil if score > quartile_boundaries(github).last or score < 0
             bounds.count { |bound| score > bound }
