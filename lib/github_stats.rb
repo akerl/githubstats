@@ -26,7 +26,7 @@ rescue LoadError
 end
 
 module Github_Stats
-    Version = '0.1.5'
+    Version = '0.1.6'
 
     class << self
         ##
@@ -129,7 +129,11 @@ module Github_Stats
         # Return the current streak
 
         def streak
-            @cache.cache { @data.reverse.take_while{ |point| point.score > 0 } }
+            @cache.cache do
+                streak = @data.reverse.drop(1).take_while{ |point| point.score > 0 }.reverse
+                streak << @data.last unless @data.last.score.zero?
+                streak
+            end
         end
 
         ##
