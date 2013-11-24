@@ -234,7 +234,7 @@ module GithubStats
     ##
     # Call the provided block and return its value
 
-    def cache(key = nil, &code)
+    def cache(&code)
       code.call
     end
   end
