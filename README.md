@@ -1,7 +1,11 @@
-github\_stats
+GithubStats
 =========
 
-[![Gem Version](https://badge.fury.io/rb/github_stats.png)](http://badge.fury.io/rb/github\_stats)
+[![Gem Version](https://badge.fury.io/rb/githubstats.png)](http://badge.fury.io/rb/githubstats)
+[![Dependency Status](https://gemnasium.com/akerl/githubstats.png)](https://gemnasium.com/akerl/githubstats)
+[![Code Climate](https://codeclimate.com/github/akerl/basiccache.png)](https://codeclimate.com/github/akerl/githubstats)
+[![Coverage Status](https://coveralls.io/repos/akerl/githubstats/badge.png?branch=master)](https://coveralls.io/r/akerl/githubstats?branch=master)
+[![Build Status](https://travis-ci.org/akerl/githubstats.png?branch=master)](https://travis-ci.org/akerl/githubstats)
 
 Grabs Github contribution statistics and presents it in an easily consumable format.
 
@@ -10,7 +14,7 @@ Grabs Github contribution statistics and presents it in an easily consumable for
 A script is provided that uses the module to provide an overview of your contributions:
 
 ```
-# github_stats
+# githubstats
 Contribution data for akerl:
     Today's score: 9
     Current streak: 32
@@ -25,8 +29,8 @@ The graph is generated using spark (https://github.com/holman/spark) if you have
 Initializing a new Contributions object can be done as so:
 
 ```
-require 'github_stats'
-stats = Github_Stats.new('akerl')
+require 'githubstats'
+stats = GithubStats.new('akerl')
 puts stats.data.today # Prints today's current score
 ```
 
@@ -43,7 +47,7 @@ akerl
 # gem list | grep rugged
 rugged (0.19.0)
 
-# github_stats mikegrb
+# githubstats mikegrb
 Contribution data for mikegrb:
     Today's score: 0
     Current streak: 0
@@ -52,7 +56,7 @@ Contribution data for mikegrb:
     Quartile boundaries: [0, 2, 5, 8, 23]
 ▁▁▂▂▂▁▁▁▁▃▁▁▄▁▁▁▄▂▁▂▄▁▁▂▄▃▂▁▁▁▁▁▄▃▁▁▁▁█▄▃▂▄▁▁▁▁▃▁▂▁▁▁▁▁▅▂▁▁▁
 
-# github_stats
+# githubstats
 Contribution data for fly:
     Today's score: 0
     Current streak: 0
@@ -64,7 +68,7 @@ Contribution data for fly:
 # gem uninstall rugged
 Successfully uninstalled rugged-0.19.0
 
-# github_stats
+# githubstats
 Contribution data for akerl:
     Today's score: 9
     Current streak: 32
@@ -78,7 +82,7 @@ Contribution data for akerl:
 
 ## Installation
 
-    gem install github_stats
+    gem install githubstats
 
 ## Contributors
 
@@ -86,6 +90,5 @@ Contribution data for akerl:
 * [Jon Chen](https://github.com/fly) for providing encouragement while borrowing my code
 
 ## License
-
-github\_stats is released under the MIT License. See the bundled LICENSE file for details.
+GithubStats is released under the MIT License. See the bundled LICENSE file for details.
 
