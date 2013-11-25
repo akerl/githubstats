@@ -1,7 +1,8 @@
 PATH
   remote: .
   specs:
-    githubstats (0.1.7)
+    githubstats (0.2.0)
+      basiccache
       curb
       json
 
@@ -9,6 +10,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (1.1.0)
+    basiccache (2)
     coveralls (0.7.0)
       multi_json (~> 1.3)
       rest-client
