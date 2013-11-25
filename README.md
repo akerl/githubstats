@@ -3,7 +3,7 @@ GithubStats
 
 [![Gem Version](https://badge.fury.io/rb/githubstats.png)](http://badge.fury.io/rb/githubstats)
 [![Dependency Status](https://gemnasium.com/akerl/githubstats.png)](https://gemnasium.com/akerl/githubstats)
-[![Code Climate](https://codeclimate.com/github/akerl/basiccache.png)](https://codeclimate.com/github/akerl/githubstats)
+[![Code Climate](https://codeclimate.com/github/akerl/githubstats.png)](https://codeclimate.com/github/akerl/githubstats)
 [![Coverage Status](https://coveralls.io/repos/akerl/githubstats/badge.png?branch=master)](https://coveralls.io/r/akerl/githubstats?branch=master)
 [![Build Status](https://travis-ci.org/akerl/githubstats.png?branch=master)](https://travis-ci.org/akerl/githubstats)
 
