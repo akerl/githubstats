@@ -8,7 +8,7 @@ module GithubStats
   ##
   # This is the magic constant used for determining outliers
 
-  GH_MAGIC = 3.77972616981
+  GITHUB_MAGIC = 3.77972616981
 
   ##
   # Helper struct for defining datapoints
@@ -33,8 +33,7 @@ module GithubStats
     def initialize(data)
       @raw = data.map { |d, s| Datapoint.new(Date.parse(d), s.to_i) }
       enable_caching [:to_h, :today, :streaks, :longest_streak, :streak, :max,
-                      :mean, :std_var, :quartile_boundaries, :quartiles,
-                      :quartile]
+                      :mean, :std_var, :quartile_boundaries, :quartiles]
     end
 
     def to_h
@@ -50,6 +49,7 @@ module GithubStats
         point.score == 0 ? acc << [] : acc.last << point
         acc
       end
+      streaks.reject! { |s| s.empty? }
       streaks.first.empty? ? streaks[1..-1] : streaks
     end
 
@@ -76,7 +76,8 @@ module GithubStats
 
     def quartile_boundaries
       data = @raw.map { |p| p.score }.uniq.sort.select { |s| !s.zero? }
-      data.select! { |x| (mean - x).abs / std_var <= GH_MAGIC }
+      data.select! { |x| ((mean - x) / std_var).abs <= GITHUB_MAGIC }
+      data = (0..data.max).to_a
       [0, *(1..3).map { |q| data[(q * data.length / 4) - 2] }, max.score]
     end
 
@@ -86,9 +87,9 @@ module GithubStats
       end
     end
 
-    def quartile
+    def quartile(score)
       return nil if score > quartile_boundaries.last || score < 0
-      bounds.count { |bound| score > bound }
+      quartile_boundaries.count { |bound| score > bound }
     end
   end
 end

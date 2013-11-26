@@ -1,0 +1,74 @@
+{
+    "akerl": {
+        "today": 9,
+        "streaks": 52,
+        "longest_streak": 89,
+        "streak": 89,
+        "max": 88,
+        "mean": 2.9317,
+        "std_var": 7.1572,
+        "bounds": [0, 3, 8, 13, 88],
+        "quartile": {
+            "12": 3,
+            "4": 2
+        }
+    },
+    "mikegrb": {
+        "today": 0,
+        "streaks": 20,
+        "longest_streak": 137,
+        "streak": 137,
+        "max": 23,
+        "mean": 1.3962,
+        "std_var": 2.6429,
+        "bounds": [0, 1, 4, 7, 23],
+        "quartile": {
+            "12": 4,
+            "0": 0
+        }
+    },
+    "fly": {
+        "today": 1,
+        "streaks": 43,
+        "longest_streak": 95,
+        "streak": 95,
+        "max": 28,
+        "mean": 2.765,
+        "std_var": 4.5576,
+        "bounds": [0, 3, 8, 13, 28],
+        "quartile": {
+            "8": 2,
+            "35": 4
+        }
+    },
+    "leematos": {
+        "today": 0,
+        "streaks": 6,
+        "longest_streak": 1,
+        "streak": 0,
+        "max": 3,
+        "mean": 0.0273,
+        "std_var": 0.2325,
+        "bounds": [0, null, null, null, 3],
+        "quartile": {
+            "1": 2,
+            "2": 3,
+            "3": 4
+        }
+    },
+    "torvalds": {
+        "today": 1,
+        "streaks": 45,
+        "longest_streak": 19,
+        "streak": 8,
+        "max": 42,
+        "mean": 6.2377,
+        "std_var": 6.5981,
+        "bounds": [0, 5, 12, 18, 42],
+        "quartile": {
+            "43": 4,
+            "18": 3
+        }
+    }
+}
+
