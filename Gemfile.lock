@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    githubstats (0.2.0)
+    githubstats (0.2.1)
       basiccache
       curb
       json
