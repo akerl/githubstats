@@ -1,47 +1,55 @@
 {
     "akerl": {
-        "today": 9,
+        "date": "2013/11/27",
+        "today": 3,
         "streaks": 52,
-        "longest_streak": 89,
-        "streak": 89,
+        "longest_streak": 91,
+        "streak": 91,
         "max": 88,
-        "mean": 2.9317,
-        "std_var": 7.1572,
-        "bounds": [0, 3, 8, 13, 88],
+        "mean": 2.9481,
+        "std_var": 7.1566,
+        "bounds": [0, 12, 25, 38, 88],
+        "quartiles": 172,
         "quartile": {
-            "12": 3,
-            "4": 2
+            "12": 1,
+            "13": 2
         }
     },
     "mikegrb": {
+        "date": "2013/11/27",
         "today": 0,
         "streaks": 20,
-        "longest_streak": 137,
-        "streak": 137,
+        "longest_streak": 139,
+        "streak": 139,
         "max": 23,
-        "mean": 1.3962,
-        "std_var": 2.6429,
-        "bounds": [0, 1, 4, 7, 23],
+        "mean": 1.4044,
+        "std_var": 2.6412,
+        "bounds": [0, 2, 5, 8, 23],
+        "quartiles": 103,
         "quartile": {
             "12": 4,
             "0": 0
         }
     },
     "fly": {
-        "today": 1,
+        "date": "2013/11/27",
+        "today": 0,
         "streaks": 43,
-        "longest_streak": 95,
-        "streak": 95,
+        "longest_streak": 96,
+        "streak": 96,
         "max": 28,
-        "mean": 2.765,
-        "std_var": 4.5576,
-        "bounds": [0, 3, 8, 13, 28],
+        "mean": 2.7923,
+        "std_var": 4.571,
+        "bounds": [0, 4, 9, 14, 28],
+        "quartiles": 100,
         "quartile": {
             "8": 2,
-            "35": 4
+            "35": null,
+            "-1": null
         }
     },
     "leematos": {
+        "date": "2013/11/27",
         "today": 0,
         "streaks": 6,
         "longest_streak": 1,
@@ -49,7 +57,8 @@
         "max": 3,
         "mean": 0.0273,
         "std_var": 0.2325,
-        "bounds": [0, null, null, null, 3],
+        "bounds": [0, 0, 1, 2, 3],
+        "quartiles": 0,
         "quartile": {
             "1": 2,
             "2": 3,
@@ -57,16 +66,18 @@
         }
     },
     "torvalds": {
-        "today": 1,
+        "date": "2013/11/27",
+        "today": 0,
         "streaks": 45,
         "longest_streak": 19,
-        "streak": 8,
+        "streak": 9,
         "max": 42,
-        "mean": 6.2377,
-        "std_var": 6.5981,
-        "bounds": [0, 5, 12, 18, 42],
+        "mean": 6.1885,
+        "std_var": 6.5939,
+        "bounds": [0, 7, 15, 23, 42],
+        "quartiles": 210,
         "quartile": {
-            "43": 4,
+            "42": 4,
             "18": 3
         }
     }

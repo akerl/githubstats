@@ -36,13 +36,36 @@ module GithubStats
                       :mean, :std_var, :quartile_boundaries, :quartiles]
     end
 
+    ##
+    # The data as a hash where the keys are dates and values are scores
+
     def to_h
       @raw.reduce(Hash.new(0)) { |a, e| a.merge(e.date => e.score) }
     end
 
+    ##
+    # The score for today
+
     def today
       to_h[Date.today]
     end
+
+    ##
+    # The score for a given day
+
+    def [](date)
+      to_h[Date.parse(date)]
+    end
+
+    ##
+    # Scores in chronological order
+
+    def scores
+      @raw.map { |x| x.score }
+    end
+
+    ##
+    # All streaks for a user
 
     def streaks
       streaks = @raw.reduce(Array.new(1, [])) do |acc, point|
@@ -53,42 +76,73 @@ module GithubStats
       streaks.first.empty? ? streaks[1..-1] : streaks
     end
 
+    ##
+    # The longest streak
+
     def longest_streak
       streaks.max { |a, b| a.length <=> b.length }
     end
+
+    ##
+    # The current streak, or nil
 
     def streak
       streaks.last.last.date >= Date.today - 1 ? streaks.last : []
     end
 
+    ##
+    # The highest scoring day
+
     def max
       @raw.max { |a, b| a.score <=> b.score }
     end
 
+    ##
+    # The mean score
+
     def mean
-      @raw.reduce(0) { |a, e| a + e.score } / @raw.size.to_f
+      scores.reduce(:+) / @raw.size.to_f
     end
+
+    ##
+    # The standard variance (two pass)
 
     def std_var
       first_pass = @raw.reduce(0) { |a, e| (e.score.to_f - mean)**2 + a }
       Math.sqrt(first_pass / (@raw.size - 1))
     end
 
-    def quartile_boundaries
-      data = @raw.map { |p| p.score }.uniq.sort.select { |s| !s.zero? }
-      data.select! { |x| ((mean - x) / std_var).abs <= GITHUB_MAGIC }
-      data = (0..data.max).to_a
-      [0, *(1..3).map { |q| data[(q * data.length / 4) - 2] }, max.score]
+    ##
+    # Outliers of the set
+
+    def outliers
+      return [] if scores.uniq.size < 5
+      scores.select { |x| ((mean - x) / std_var).abs > GITHUB_MAGIC }.uniq
     end
+
+    ##
+    # The boundaries of the quartiles
+    # The index represents the quartile number
+    # The value is the upper bound of the quartile (inclusive)
+
+    def quartile_boundaries
+      range = (0..scores.reject { |x| outliers.take(3).include? x }.max).to_a
+      [0, *(1..3).map { |q| range[(q * range.size / 4) - 1] }, max.score]
+    end
+
+    ##
+    # Return the list split into quartiles
 
     def quartiles
-      @data.reduce(Array.new(5) { Array.new }) do |acc, point|
-        acc[quartile_boundaries.find_index { |i| point.score <= i }] << point
-      end
+      quartiles = Array.new(5) { [] }
+      @raw.reduce(quartiles) { |a, e| a[quartile(e.score)] << e && a }
     end
 
+    ##
+    # Return the quartile of a given score
+
     def quartile(score)
-      return nil if score > quartile_boundaries.last || score < 0
+      return nil if score < 0 || score > max.score
       quartile_boundaries.count { |bound| score > bound }
     end
   end
