@@ -42,6 +42,10 @@ describe GithubStats do
       expect(named_user.last_updated).to be_an_instance_of DateTime
     end
 
+    it 'raises an exception if it cannot load data' do
+      expect { hash_user.scores }.to raise_error RuntimeError
+    end
+
     it 'returns a human-readable string when inspected' do
       expect(named_user.to_s).to eql 'Contributions from akerl'
       expect(named_user.inspect).to eql 'Contributions from akerl'
