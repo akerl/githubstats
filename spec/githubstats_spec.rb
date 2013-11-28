@@ -47,6 +47,10 @@ describe GithubStats do
       expect(named_user.inspect).to eql 'Contributions from akerl'
     end
 
+    it 'proxies requests for Data methods' do
+      expect(named_user.scores).to be_an_instance_of Array
+    end
+
     it 'truthfully handles respond_to? queries' do
       expect(named_user.respond_to? :to_s).to be_true
       expect(named_user.respond_to? :today).to be_true
