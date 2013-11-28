@@ -1,11 +1,10 @@
 require 'curb'
 require 'json'
-
+autoload :Rugged, 'rugged'
 ##
 # Rugged is used if available to look up the user's Github username
 
 begin
-  require 'rugged'
   RUGGED_USER = Rugged::Config.global['github.user']
 rescue LoadError
   RUGGED_USER = nil
