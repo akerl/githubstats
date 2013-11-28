@@ -8,6 +8,7 @@
         "max": 88,
         "mean": 2.9481,
         "std_var": 7.1566,
+        "outliers": [50, 88, 32, 51],
         "bounds": [0, 12, 25, 38, 88],
         "quartiles": 172,
         "quartile": {
@@ -24,6 +25,7 @@
         "max": 23,
         "mean": 1.4044,
         "std_var": 2.6412,
+        "outliers": [12, 23, 15],
         "bounds": [0, 2, 5, 8, 23],
         "quartiles": 103,
         "quartile": {
@@ -40,6 +42,7 @@
         "max": 28,
         "mean": 2.7923,
         "std_var": 4.571,
+        "outliers": [23, 22, 28],
         "bounds": [0, 4, 9, 14, 28],
         "quartiles": 100,
         "quartile": {
@@ -57,6 +60,7 @@
         "max": 3,
         "mean": 0.0273,
         "std_var": 0.2325,
+        "outliers": [],
         "bounds": [0, 0, 1, 2, 3],
         "quartiles": 0,
         "quartile": {
@@ -74,6 +78,7 @@
         "max": 42,
         "mean": 6.1885,
         "std_var": 6.5939,
+        "outliers": [34, 42, 41],
         "bounds": [0, 7, 15, 23, 42],
         "quartiles": 210,
         "quartile": {

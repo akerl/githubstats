@@ -42,6 +42,12 @@ describe GithubStats do
           end
         end
 
+        describe '#scores' do
+          it 'returns the scores as an array' do
+            expect(data.scores).to be_an_instance_of Array
+          end
+        end
+
         describe '#streaks' do
           it 'returns all the streaks for a user' do
             expect(data.streaks.size).to eql results['streaks']
@@ -75,6 +81,12 @@ describe GithubStats do
         describe '#std_var' do
           it 'returns the standard variance of the set' do
             expect(data.std_var.round 4).to eql results['std_var']
+          end
+        end
+
+        describe '#outliers' do
+          it 'returns the outliers for the distribution' do
+            expect(data.outliers).to eql results['outliers']
           end
         end
 
