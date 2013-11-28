@@ -45,6 +45,7 @@ describe GithubStats do
         describe '#scores' do
           it 'returns the scores as an array' do
             expect(data.scores).to be_an_instance_of Array
+            expect(data.scores.size).to be 366
           end
         end
 
