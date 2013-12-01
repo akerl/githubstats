@@ -110,6 +110,12 @@ describe GithubStats do
             end
           end
         end
+
+        describe '#pad' do
+          it 'returns a padded dataset' do
+            expect(data.pad.size % 7).to eql 0
+          end
+        end
       end
     end
   end

@@ -145,5 +145,19 @@ module GithubStats
       return nil if score < 0 || score > max.score
       quartile_boundaries.count { |bound| score > bound }
     end
+
+    ##
+    # Pad the dataset to full week increments
+
+    def pad(fill_value = -1, data = @raw.clone)
+      point = GithubStats::Datapoint
+      until data.first.date.wday == 0
+        data.unshift point.new(data.first.date - 1, fill_value)
+      end
+      until data.last.date.wday == 6
+        data << point.new(data.last.date + 1, fill_value)
+      end
+      data
+    end
   end
 end
