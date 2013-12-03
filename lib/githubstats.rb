@@ -1,13 +1,14 @@
 require 'curb'
 require 'json'
-autoload :Rugged, 'rugged'
+
 ##
 # Rugged is used if available to look up the user's Github username
 
 begin
-  RUGGED_USER = Rugged::Config.global['github.user']
+  require 'rugged'
+  USE_RUGGED = true
 rescue LoadError
-  RUGGED_USER = nil
+  USE_RUGGED = false
 end
 
 ##
@@ -72,7 +73,7 @@ module GithubStats
     # Guesses the user's name based on system environment
 
     def guess_user(names = [])
-      names << RUGGED_USER
+      names << Rugged::Config.global['github.user'] if USE_RUGGED
       names << ENV['USER']
       names.find { |name| !name.nil? } || (fail 'Failed to guess username')
     end

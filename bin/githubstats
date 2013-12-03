@@ -6,8 +6,8 @@ user = GithubStats.new ARGV.first
 
 puts "Contribution data for #{user.name}:
   Today's score: #{user.today}
-  Current streak: #{user.streak.length}
-  Longest streak: #{user.longest_streak.length}
+  Current streak: #{(user.streak || []).length}
+  Longest streak: #{(user.longest_streak || []).length}
   High score: #{user.max.score} on #{user.max.date}
   Quartile boundaries: #{user.quartile_boundaries.inspect}"
 
