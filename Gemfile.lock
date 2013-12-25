@@ -10,7 +10,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (1.1.0)
-    basiccache (0.0.25)
+    basiccache (0.0.26)
     coveralls (0.7.0)
       multi_json (~> 1.3)
       rest-client
@@ -27,7 +27,7 @@ GEM
     json (1.8.1)
     mime-types (2.0)
     multi_json (1.8.2)
-    parser (2.1.0)
+    parser (2.1.1)
       ast (~> 1.1)
       slop (~> 3.4, >= 3.4.5)
     powerpack (0.0.9)
@@ -43,8 +43,8 @@ GEM
     rspec-expectations (2.14.4)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.14.4)
-    rubocop (0.15.0)
-      parser (~> 2.0)
+    rubocop (0.16.0)
+      parser (~> 2.1)
       powerpack (~> 0.0.6)
       rainbow (>= 1.1.4)
     ruby-progressbar (1.3.2)
