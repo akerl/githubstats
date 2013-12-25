@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'githubstats'
-  s.version     = '0.2.4'
+  s.version     = '0.2.5'
   s.date        = Time.now.strftime("%Y-%m-%d")
 
   s.summary     = 'Present Github contributions stats in a consumable format'
