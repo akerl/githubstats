@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe GithubStats do
-  describe '.new' do
+  describe '#new' do
     it 'creates a User object' do
       expect(GithubStats.new).to be_an_instance_of GithubStats::User
     end
