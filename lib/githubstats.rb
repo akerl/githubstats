@@ -97,7 +97,7 @@ module GithubStats
 
     def method_missing(sym, *args, &block)
       load_data if @last_updated.nil?
-      return unless @data.respond_to? sym
+      return super unless @data.respond_to? sym
       instance_eval "def #{sym}(*args, &block) @data.#{sym}(*args, &block) end"
       send(sym, *args, &block)
     end
