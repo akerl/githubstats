@@ -150,12 +150,17 @@ module GithubStats
     # Pad the dataset to full week increments
 
     def pad(fill_value = -1, data = @raw.clone)
+      data = _pad data, 0, fill_value, 0
+      _pad data, -1, fill_value, 6
+    end
+
+    private
+
+    def _pad(data, index, fill_value, goal)
+      mod = index * -2 - 1 # 0 index moves -1 in time, -1 move +1 in time
       point = GithubStats::Datapoint
-      until data.first.date.wday == 0
-        data.unshift point.new(data.first.date - 1, fill_value)
-      end
-      until data.last.date.wday == 6
-        data << point.new(data.last.date + 1, fill_value)
+      until data[index].date.wday == goal
+        data.insert index, point.new(data[index].date + mod, fill_value)
       end
       data
     end
