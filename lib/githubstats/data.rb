@@ -3,7 +3,6 @@ require 'date'
 
 ##
 # Definition of data objects for GithubStats
-
 module GithubStats
   ##
   # This is the magic constant used for determining outliers
@@ -17,7 +16,6 @@ module GithubStats
 
   ##
   # Data class for calculations
-
   class Data
     ##
     # MethodCacher provides computation caching

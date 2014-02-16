@@ -13,7 +13,6 @@ end
 
 ##
 # Definitions of user objects for GithubStats
-
 module GithubStats
   ##
   # Helper method for creating new user objects
@@ -29,7 +28,6 @@ module GithubStats
 
   ##
   # User object
-
   class User
     attr_reader :name, :url, :data, :last_updated
 
