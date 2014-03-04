@@ -18,8 +18,8 @@ describe GithubStats do
         open('spec/examples/results') { |f| JSON.parse f.read }[subject]
       end
       let(:data) do
-        json = JSON.parse(open("spec/examples/#{subject}.user") { |fh| fh.read })
-        GithubStats::Data.new json
+        file = open("spec/examples/#{subject}.user") { |fh| fh.read }
+        GithubStats::Data.new JSON.parse(file)
       end
 
       before(:each) { Timecop.freeze Date.parse(results['date']) }
