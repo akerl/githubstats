@@ -85,6 +85,25 @@
             "42": 4,
             "18": 3
         }
+    },
+    "lmatos": {
+        "date": "2014/03/04",
+        "today": 0,
+        "streaks": 6,
+        "longest_streak": 1,
+        "streak": 0,
+        "max": 2,
+        "mean": 0.0191,
+        "std_var": 0.1559,
+        "outliers": [],
+        "bounds": [0, 0, 0, 1, 2],
+        "quartiles": 0,
+        "quartile": {
+            "0": 0,
+            "1": 3,
+            "2": 4,
+            "3": null
+        }
     }
 }
 
