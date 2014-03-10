@@ -127,7 +127,9 @@ module GithubStats
 
     def quartile_boundaries
       range = (0..scores.reject { |x| outliers.take(3).include? x }.max).to_a
-      [0, *(1..3).map { |q| range[(q * range.size / 4) - 1] }, max.score]
+      mids = (1..3).map { |q| range[(q * range.size / 4) - 1] }
+      bounds = (mids + [max.score]).uniq.sort
+      [0] * (5 - bounds.size) + bounds
     end
 
     ##
