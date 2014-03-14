@@ -14,16 +14,14 @@ Gem::Specification.new do |s|
   s.test_files  = `git ls-files spec/*`.split
   s.executables = ['githubstats']
 
-  s.add_runtime_dependency 'curb'
-  s.add_runtime_dependency 'json'
-  s.add_runtime_dependency 'basiccache'
+  s.add_runtime_dependency 'curb', '~> 0.8.5'
+  s.add_runtime_dependency 'basiccache', '~> 0.1.0'
 
-  s.add_development_dependency 'timecop'
-  s.add_development_dependency 'rubocop'
-  s.add_development_dependency 'travis-lint'
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'coveralls'
-  s.add_development_dependency 'rspec'
-  s.add_development_dependency 'fuubar'
-  s.add_development_dependency 'parser'
+  s.add_development_dependency 'timecop', '~> 0.7.1'
+  s.add_development_dependency 'rubocop', '~> 0.19.0'
+  s.add_development_dependency 'travis-lint', '~> 1.8.0'
+  s.add_development_dependency 'rake', '~> 10.1.1'
+  s.add_development_dependency 'coveralls', '~> 0.7.0'
+  s.add_development_dependency 'rspec', '~> 2.14.1'
+  s.add_development_dependency 'fuubar', '~> 1.3.2'
 end
