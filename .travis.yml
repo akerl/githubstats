@@ -8,7 +8,7 @@ env:
 - WITH_RUGGED=no
 - WITH_RUGGED=yes
 before_script:
-- [[ "$WITH_RUGGED" == 'no' ]] || gem install rugged
+- '[[ "$WITH_RUGGED" == "no" ]] || gem install rugged'
 notifications:
   email: false
   irc:
