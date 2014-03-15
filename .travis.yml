@@ -4,6 +4,11 @@ rvm:
 - 2.1.0
 - 2.0.0
 - 1.9.3
+env:
+- WITH_RUGGED=no
+- WITH_RUGGED=yes
+before_script:
+- [[ "$WITH_RUGGED" == 'no' ]] || gem install rugged
 notifications:
   email: false
   irc:
