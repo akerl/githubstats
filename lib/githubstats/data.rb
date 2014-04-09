@@ -78,7 +78,7 @@ module GithubStats
     # The longest streak
 
     def longest_streak
-      return nil if streaks.empty?
+      return [] if streaks.empty?
       streaks.max { |a, b| a.length <=> b.length }
     end
 
@@ -86,7 +86,7 @@ module GithubStats
     # The current streak, or nil
 
     def streak
-      return nil if streaks.empty?
+      return [] if streaks.empty?
       streaks.last.last.date >= Date.today - 1 ? streaks.last : []
     end
 
