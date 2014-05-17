@@ -9,11 +9,30 @@
         "mean": 2.9481,
         "std_var": 7.1566,
         "outliers": [50, 88, 32, 51],
+        "gh_outliers": [50, 88, 32],
         "bounds": [0, 12, 25, 38, 88],
         "quartiles": 172,
         "quartile": {
             "12": 1,
             "13": 2
+        }
+    },
+    "laker": {
+        "date": "2014/05/17",
+        "today": 0,
+        "streaks": 23,
+        "longest_streak": 261,
+        "streak": 261,
+        "max": 77,
+        "mean": 6.5109,
+        "std_var": 10.2494,
+        "outliers": [52, 77, 51, 60, 65, 50, 47, 56],
+        "gh_outliers": [52, 77, 51],
+        "bounds": [0, 16, 32, 48, 77],
+        "quartiles": 284,
+        "quartile": {
+            "16": 1,
+            "17": 2
         }
     },
     "mikegrb": {
@@ -26,6 +45,7 @@
         "mean": 1.4044,
         "std_var": 2.6412,
         "outliers": [12, 23, 15],
+        "gh_outliers": [12, 23, 15],
         "bounds": [0, 2, 5, 8, 23],
         "quartiles": 103,
         "quartile": {
@@ -43,6 +63,7 @@
         "mean": 2.7923,
         "std_var": 4.571,
         "outliers": [23, 22, 28],
+        "gh_outliers": [23, 22, 28],
         "bounds": [0, 4, 9, 14, 28],
         "quartiles": 100,
         "quartile": {
@@ -61,6 +82,7 @@
         "mean": 0.0273,
         "std_var": 0.2325,
         "outliers": [],
+        "gh_outliers": [],
         "bounds": [0, 0, 1, 2, 3],
         "quartiles": 0,
         "quartile": {
@@ -79,6 +101,7 @@
         "mean": 6.1885,
         "std_var": 6.5939,
         "outliers": [34, 42, 41],
+        "gh_outliers": [34, 42, 41],
         "bounds": [0, 7, 15, 23, 42],
         "quartiles": 210,
         "quartile": {
@@ -96,6 +119,7 @@
         "mean": 0.0191,
         "std_var": 0.1559,
         "outliers": [],
+        "gh_outliers": [],
         "bounds": [0, 0, 0, 1, 2],
         "quartiles": 0,
         "quartile": {

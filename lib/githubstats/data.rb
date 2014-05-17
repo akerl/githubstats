@@ -121,12 +121,20 @@ module GithubStats
     end
 
     ##
+    # Outliers as calculated by GitHub
+    # They only consider the first 3 or 1, based on the mean and max of the set
+
+    def gh_outliers
+      outliers.take((6 > max.score - mean || 15 > max.score) ? 1 : 3)
+    end
+
+    ##
     # The boundaries of the quartiles
     # The index represents the quartile number
     # The value is the upper bound of the quartile (inclusive)
 
     def quartile_boundaries
-      top = scores.reject { |x| outliers.take(3).include? x }.max
+      top = scores.reject { |x| gh_outliers.include? x }.max
       range = (0..top).to_a
       mids = (1..3).map do |q|
         index = q * range.size / 4 - 1

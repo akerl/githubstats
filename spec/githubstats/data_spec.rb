@@ -92,6 +92,12 @@ describe GithubStats do
         end
       end
 
+      describe '#gh_outliers' do
+        it 'returns the GitHub outliers for the distribution' do
+          expect(data.gh_outliers).to eql results['gh_outliers']
+        end
+      end
+
       describe '#quartile_boundaries' do
         it 'returns a boundaries of the quartiles of the set' do
           expect(data.quartile_boundaries).to eql results['bounds']
