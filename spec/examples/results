@@ -29,7 +29,7 @@
         "outliers": [52, 77, 51, 60, 65, 50, 47, 56],
         "gh_outliers": [52, 77, 51],
         "bounds": [0, 16, 32, 48, 77],
-        "quartiles": 284,
+        "quartiles": 287,
         "quartile": {
             "16": 1,
             "17": 2
