@@ -66,9 +66,8 @@ module GithubStats
     # All streaks for a user
 
     def streaks
-      streaks = @raw.reduce(Array.new(1, [])) do |acc, point|
+      streaks = @raw.each_with_object(Array.new(1, [])) do |point, acc|
         point.score == 0 ? acc << [] : acc.last << point
-        acc
       end
       streaks.reject! { |s| s.empty? }
       streaks
