@@ -1,6 +1,11 @@
 #!/usr/bin/env ruby
 
 require 'githubstats'
+require 'optparse'
+
+opt = OptionParser.new do |opts|
+  opts.banner = 'Usage: githubstats [-h] [USER]'
+end.parse!
 
 user = GithubStats.new ARGV.first
 
