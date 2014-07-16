@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'githubstats'
-  s.version     = '0.2.12'
+  s.version     = '0.2.13'
   s.date        = Time.now.strftime("%Y-%m-%d")
 
   s.summary     = 'Present Github contributions stats in a consumable format'
@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.executables = ['githubstats']
 
   s.add_runtime_dependency 'curb', '~> 0.8.5'
-  s.add_runtime_dependency 'basiccache', '~> 0.1.0'
+  s.add_runtime_dependency 'basiccache', '~> 0.2.0'
 
   s.add_development_dependency 'timecop', '~> 0.7.1'
   s.add_development_dependency 'rubocop', '~> 0.24.0'
