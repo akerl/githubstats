@@ -24,7 +24,7 @@ module GithubStats
   ##
   # Default URL for grabbing data
 
-  DEFAULT_URL = 'https://github.com/users/%s/contributions_calendar_data'
+  DEFAULT_URL = 'https://github.com/users/%s/contributions'
 
   ##
   # User object
