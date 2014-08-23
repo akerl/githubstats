@@ -14,8 +14,8 @@ Gem::Specification.new do |s|
   s.test_files  = `git ls-files spec/*`.split
   s.executables = ['githubstats']
 
-  s.add_runtime_dependency 'curb', '~> 0.8.5'
-  s.add_runtime_dependency 'basiccache', '~> 0.2.0'
+  s.add_runtime_dependency 'curb', '~> 0.8.6'
+  s.add_runtime_dependency 'basiccache', '~> 0.2.2'
 
   s.add_development_dependency 'timecop', '~> 0.7.1'
   s.add_development_dependency 'rubocop', '~> 0.25.0'
