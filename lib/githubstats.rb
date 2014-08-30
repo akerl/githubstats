@@ -1,5 +1,6 @@
 require 'curb'
 require 'json'
+require 'githubstats/longstreakpoller'
 
 ##
 # Rugged is used if available to look up the user's Github username
@@ -29,6 +30,8 @@ module GithubStats
   ##
   # User object
   class User
+    include GithubStats::LongStreakPoller
+
     attr_reader :name, :url, :data, :last_updated
 
     ##
@@ -37,6 +40,7 @@ module GithubStats
     def initialize(params = {})
       params = { name: params } unless params.is_a? Hash
       @name = params[:name] || guess_user
+      @poll_for_long_streaks = params[:poll_for_long_streaks] || false
       @url = (params[:url] || DEFAULT_URL) % @name
       @last_updated = nil
     end
@@ -81,6 +85,7 @@ module GithubStats
 
     def load_data
       @data = GithubStats::Data.new download
+      poll_longer_streak if @data.streak.size == 366 && poll_for_long_streaks
       @last_updated = DateTime.now
     end
 

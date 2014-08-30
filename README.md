@@ -81,6 +81,8 @@ Contribution data for akerl:
 #
 ```
 
+### Polling for streaks longer than 1 year
+
 ## Installation
 
     gem install githubstats
