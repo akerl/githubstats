@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'basiccache', '~> 0.2.2'
 
   s.add_development_dependency 'timecop', '~> 0.7.1'
-  s.add_development_dependency 'rubocop', '~> 0.25.0'
+  s.add_development_dependency 'rubocop', '~> 0.26.0'
   s.add_development_dependency 'rake', '~> 10.3.2'
   s.add_development_dependency 'coveralls', '~> 0.7.1'
   s.add_development_dependency 'rspec', '~> 3.0.0'
