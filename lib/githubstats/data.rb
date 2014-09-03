@@ -59,7 +59,7 @@ module GithubStats
     # Scores in chronological order
 
     def scores
-      @raw.map { |x| x.score }
+      @raw.map(&:score)
     end
 
     ##
@@ -69,7 +69,7 @@ module GithubStats
       streaks = @raw.each_with_object(Array.new(1, [])) do |point, acc|
         point.score == 0 ? acc << [] : acc.last << point
       end
-      streaks.reject! { |s| s.empty? }
+      streaks.reject!(&:empty?)
       streaks
     end
 
