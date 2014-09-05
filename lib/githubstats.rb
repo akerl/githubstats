@@ -24,7 +24,7 @@ module GithubStats
   ##
   # Default URL for grabbing data
 
-  DEFAULT_URL = 'https://github.com/users/%s/contributions'
+  DEFAULT_URL = 'https://github.com/users/%s/contributions.json'
 
   ##
   # User object
