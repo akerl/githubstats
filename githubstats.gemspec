@@ -1,6 +1,9 @@
+$:.unshift File.expand_path('../lib/', __FILE__)
+require 'githubstats/version'
+
 Gem::Specification.new do |s|
   s.name        = 'githubstats'
-  s.version     = '0.2.15'
+  s.version     = GithubStats::VERSION
   s.date        = Time.now.strftime("%Y-%m-%d")
 
   s.summary     = 'Present Github contributions stats in a consumable format'

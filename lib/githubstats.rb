@@ -107,4 +107,5 @@ module GithubStats
   end
 end
 
+require 'githubstats/version'
 require 'githubstats/data'
