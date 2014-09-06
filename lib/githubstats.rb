@@ -1,5 +1,6 @@
 require 'curb'
 require 'json'
+require 'nokogiri'
 
 ##
 # Rugged is used if available to look up the user's Github username
@@ -24,7 +25,7 @@ module GithubStats
   ##
   # Default URL for grabbing data
 
-  DEFAULT_URL = 'https://github.com/users/%s/contributions.json'
+  DEFAULT_URL = 'https://github.com/users/%s/contributions'
 
   ##
   # User object
@@ -88,7 +89,11 @@ module GithubStats
     # Downloads new data from Github
 
     def download
-      JSON.parse Curl::Easy.perform(@url).body_str
+      svg = Curl::Easy.perform(@url).body_str
+      html = Nokogiri::HTML(svg)
+      html.css('.day').map do |x|
+        x.attributes.values_at('data-date', 'data-count').map(&:value)
+      end
     rescue
       raise 'Unable to load data from Github'
     end
