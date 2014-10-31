@@ -135,6 +135,7 @@ module GithubStats
     def quartile_boundaries
       top = scores.reject { |x| gh_outliers.include? x }.max
       range = (1..top).to_a
+      range = [0] * 3 if range.empty?
       mids = (1..3).map do |q|
         index = q * range.size / 4 - 1
         range[index]
