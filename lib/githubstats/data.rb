@@ -132,7 +132,7 @@ module GithubStats
     # The index represents the quartile number
     # The value is the upper bound of the quartile (inclusive)
 
-    def quartile_boundaries
+    def quartile_boundaries # rubocop:disable Metrics/AbcSize
       top = scores.reject { |x| gh_outliers.include? x }.max
       range = (1..top).to_a
       range = [0] * 3 if range.empty?
