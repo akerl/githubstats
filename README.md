@@ -12,6 +12,8 @@ Grabs Github contribution statistics and presents it in an easily consumable for
 
 ## Usage
 
+Details of the methods provided for accessing data can be found [on RubyDoc.info](http://www.rubydoc.info/github/akerl/githubstats/)
+
 A script is provided that uses the module to provide an overview of your contributions:
 
 ```
@@ -35,39 +37,13 @@ stats = GithubStats.new('akerl')
 puts stats.data.today # Prints today's current score
 ```
 
+### Username detection
+
 The username is taken from the argument passed to .new(). If no username is provided, it will try to use Rugged (https://github.com/libgit2/rugged) to load the Github username from your git configuration. If Rugged isn't installed or no Github username is set, it falls back to the current session's user, pulled via ENV.
 
 ```
 # whoami
 akerl
-
-# head -2 .gitconfig
-[github]
-    user = fly
-
-# gem list | grep rugged
-rugged (0.19.0)
-
-# githubstats mikegrb
-Contribution data for mikegrb:
-    Today's score: 0
-    Current streak: 0
-    Longest streak: 80
-    High score: 23 on 2013-09-08
-    Quartile boundaries: [0, 2, 5, 8, 23]
-▁▁▂▂▂▁▁▁▁▃▁▁▄▁▁▁▄▂▁▂▄▁▁▂▄▃▂▁▁▁▁▁▄▃▁▁▁▁█▄▃▂▄▁▁▁▁▃▁▂▁▁▁▁▁▅▂▁▁▁
-
-# githubstats
-Contribution data for fly:
-    Today's score: 0
-    Current streak: 0
-    Longest streak: 37
-    High score: 28 on 2013-04-16
-    Quartile boundaries: [0, 3, 8, 12, 28]
-▁▁▁▁▂▁▁▁▁▁▁▁▁▁▁▁▄▁▁▃▂▁▆▄▁▁▂▄▃▃▁▁▁▁▁▁▆▂▆▄▄▄▁▁▂█▁▄▆▂▁▄▄▄█▄▁▄▂▁
-
-# gem uninstall rugged
-Successfully uninstalled rugged-0.19.0
 
 # githubstats
 Contribution data for akerl:
@@ -78,7 +54,33 @@ Contribution data for akerl:
     Quartile boundaries: [0, 3, 8, 12, 50]
 ▁▁▁▆▁▂▁▁▅▄▁▃▂▁▁▃▁▁▁▁▄▁▂▃█▇▃▁▃▃▂▁▃▂▁▁▁▁▁▁▂▁▁▁▁▂▂▁▃▁▂▁▆▃▂▂▁▁▁▅
 
-#
+# githubstats mikegrb
+Contribution data for mikegrb:
+    Today's score: 0
+    Current streak: 0
+    Longest streak: 80
+    High score: 23 on 2013-09-08
+    Quartile boundaries: [0, 2, 5, 8, 23]
+▁▁▂▂▂▁▁▁▁▃▁▁▄▁▁▁▄▂▁▂▄▁▁▂▄▃▂▁▁▁▁▁▄▃▁▁▁▁█▄▃▂▄▁▁▁▁▃▁▂▁▁▁▁▁▅▂▁▁▁
+
+# head -2 .gitconfig
+[github]
+    user = fly
+
+# gem install rugged
+Building native extensions.  This could take a while...
+Successfully installed rugged-0.21.4
+1 gem installed
+
+# githubstats
+Contribution data for fly:
+    Today's score: 0
+    Current streak: 0
+    Longest streak: 37
+    High score: 28 on 2013-04-16
+    Quartile boundaries: [0, 3, 8, 12, 28]
+▁▁▁▁▂▁▁▁▁▁▁▁▁▁▁▁▄▁▁▃▂▁▆▄▁▁▂▄▃▃▁▁▁▁▁▁▆▂▆▄▄▄▁▁▂█▁▄▆▂▁▄▄▄█▄▁▄▂▁
+
 ```
 
 ## Installation
