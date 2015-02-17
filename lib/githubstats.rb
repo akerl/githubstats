@@ -101,7 +101,7 @@ module GithubStats
     def method_missing(sym, *args, &block)
       load_data if @last_updated.nil?
       return super unless @data.respond_to? sym
-      instance_eval "def #{sym}(*args, &block) @data.#{sym}(*args, &block) end"
+      define_singleton_method(sym) { |*a, &b| @data.send(sym, *a, &b) }
       send(sym, *args, &block)
     end
   end
