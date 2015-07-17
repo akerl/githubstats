@@ -23,9 +23,14 @@ module GithubStats
   end
 
   ##
+  # Default host for grabbing data
+
+  DEFAULT_HOST = ENV['GITHUB_URL'] || 'https://github.com'
+
+  ##
   # Default URL for grabbing data
 
-  DEFAULT_URL = 'https://github.com/users/%s/contributions'
+  DEFAULT_URL = "#{DEFAULT_HOST}/users/%s/contributions"
 
   ##
   # User object

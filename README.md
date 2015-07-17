@@ -83,6 +83,10 @@ Contribution data for fly:
 
 ```
 
+### GitHub Enterprise
+
+If you're using GitHub Enterprise, you can override the URL used by setting the GITHUB_URL environment variable or by passing the :url parameter when creating a GithubStats object.
+
 ## Installation
 
     gem install githubstats
