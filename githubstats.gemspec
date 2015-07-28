@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'basiccache', '~> 1.0.0'
   s.add_runtime_dependency 'nokogiri', '~> 1.6.5'
 
-  s.add_development_dependency 'timecop', '~> 0.7.1'
+  s.add_development_dependency 'timecop', '~> 0.8.0'
   s.add_development_dependency 'rubocop', '~> 0.32.0'
   s.add_development_dependency 'rake', '~> 10.4.0'
   s.add_development_dependency 'coveralls', '~> 0.8.0'
