@@ -56,6 +56,24 @@ module GithubStats
     alias_method :inspect, :to_s
 
     ##
+    # Set a custom streak that takes into account GitHub,
+    # which reports full length but only gives data for a year
+
+    def streak
+      naive = data.streak
+      return naive if naive.size < 365
+      [-1] * (real_streak_length - naive.size) + naive
+    end
+
+    ##
+    # Set a custom longest_streak to account for the overriden streak
+
+    def longest_streak
+      return data.longest_streak if data.longest_streak.size < 365
+      streak
+    end
+
+    ##
     # Lazy loader for data
 
     def data(reload = false)
@@ -88,6 +106,16 @@ module GithubStats
     def load_data
       @data = GithubStats::Data.new download
       @last_updated = DateTime.now
+    end
+
+    ##
+    # Set a custom longest_streak that takes into account GitHub,
+    # which reports full length but only gives data for a year
+
+    def real_streak_length
+      url = @url.split('/users/').first + '/' + @name
+      data = Curl::Easy.perform(url).body_str
+      Nokogiri::HTML(data).css('.contrib-number').last.text.split.first.to_i
     end
 
     ##
