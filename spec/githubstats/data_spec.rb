@@ -18,7 +18,7 @@ describe GithubStats do
         open('spec/examples/results') { |f| JSON.parse f.read }[subject]
       end
       let(:data) do
-        file = open("spec/examples/#{subject}.user") { |fh| fh.read }
+        file = open("spec/examples/#{subject}.user", &:read)
         GithubStats::Data.new JSON.parse(file)
       end
 
