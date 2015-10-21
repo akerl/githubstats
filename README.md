@@ -3,9 +3,9 @@ GithubStats
 
 [![Gem Version](https://img.shields.io/gem/v/githubstats.svg)](https://rubygems.org/gems/githubstats)
 [![Dependency Status](https://img.shields.io/gemnasium/akerl/githubstats.svg)](https://gemnasium.com/akerl/githubstats)
-[![Code Climate](https://img.shields.io/codeclimate/github/akerl/githubstats.svg)](https://codeclimate.com/github/akerl/githubstats)
-[![Coverage Status](https://img.shields.io/coveralls/akerl/githubstats.svg)](https://coveralls.io/r/akerl/githubstats)
-[![Build Status](https://img.shields.io/travis/akerl/githubstats.svg)](https://travis-ci.org/akerl/githubstats)
+[![Build Status](https://img.shields.io/circleci/project/akerl/githubstats.svg)](https://circleci.com/gh/akerl/githubstats)
+[![Coverage Status](https://img.shields.io/codecov/c/github/akerl/githubstats.svg)](https://codecov.io/github/akerl/githubstats)
+[![Code Quality](https://img.shields.io/codacy/d25d2521df3f4a6b8369edd419438d97.svg)](https://www.codacy.com/app/akerl/githubstats)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-green.svg)](https://tldrlegal.com/license/mit-license)
 
 Grabs Github contribution statistics and presents it in an easily consumable format.
