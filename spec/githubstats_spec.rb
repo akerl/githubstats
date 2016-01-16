@@ -60,9 +60,9 @@ describe GithubStats do
     end
 
     it 'truthfully handles respond_to? queries' do
-      expect(named_user.respond_to? :to_s).to be_truthy
-      expect(named_user.respond_to? :today).to be_truthy
-      expect(named_user.respond_to? :abcd).to be_falsey
+      expect(named_user.respond_to?(:to_s)).to be_truthy
+      expect(named_user.respond_to?(:today)).to be_truthy
+      expect(named_user.respond_to?(:abcd)).to be_falsey
     end
   end
 end

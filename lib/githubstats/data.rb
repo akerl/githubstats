@@ -23,7 +23,7 @@ module GithubStats
     include MethodCacher
 
     attr_reader :raw
-    alias_method :to_a, :raw
+    alias to_a raw
 
     ##
     # Create a data object and turn on caching

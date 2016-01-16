@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'curb'
 require 'json'
 require 'nokogiri'
@@ -25,12 +26,12 @@ module GithubStats
   ##
   # Default host for grabbing data
 
-  DEFAULT_HOST = ENV['GITHUB_URL'] || 'https://github.com'
+  DEFAULT_HOST = (ENV['GITHUB_URL'] || 'https://github.com').freeze
 
   ##
   # Default URL for grabbing data
 
-  DEFAULT_URL = "#{DEFAULT_HOST}/users/%s/contributions"
+  DEFAULT_URL = "#{DEFAULT_HOST}/users/%s/contributions".freeze
 
   ##
   # User object
@@ -53,7 +54,7 @@ module GithubStats
     def to_s
       "Contributions from #{@name}"
     end
-    alias_method :inspect, :to_s
+    alias inspect to_s
 
     ##
     # Set a custom streak that takes into account GitHub,

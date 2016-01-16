@@ -76,13 +76,13 @@ describe GithubStats do
 
       describe '#mean' do
         it 'returns the mean score of the set' do
-          expect(data.mean.round 4).to eql results['mean']
+          expect(data.mean.round(4)).to eql results['mean']
         end
       end
 
       describe '#std_var' do
         it 'returns the standard variance of the set' do
-          expect(data.std_var.round 4).to eql results['std_var']
+          expect(data.std_var.round(4)).to eql results['std_var']
         end
       end
 
