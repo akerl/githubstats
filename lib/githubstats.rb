@@ -98,7 +98,7 @@ module GithubStats
     def guess_user(names = [])
       names << Rugged::Config.global['github.user'] if USE_RUGGED
       names << ENV['USER']
-      names.find { |name| name } || (fail 'Failed to guess username')
+      names.find { |name| name } || (raise 'Failed to guess username')
     end
 
     ##
