@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'nokogiri', '~> 1.6.5'
 
   s.add_development_dependency 'timecop', '~> 0.8.0'
-  s.add_development_dependency 'rubocop', '~> 0.38.0'
+  s.add_development_dependency 'rubocop', '~> 0.39.0'
   s.add_development_dependency 'rake', '~> 11.1.0'
   s.add_development_dependency 'codecov', '~> 0.1.1'
   s.add_development_dependency 'rspec', '~> 3.4.0'
