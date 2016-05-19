@@ -1,3 +1,7 @@
+# 1.2.0 / 2016-05-19
+
+* [BUGFIX] Remove support for streak lookup longer than 366 days from GitHub, since they removed display of longer streaks. :(
+
 # 1.1.0 / 2015-08-19
 
 * [FEATURE] For GitHub streaks longer than 1 year, GithubStats::User#streak and #longest_streak poll GitHub for the accurate streak size. The resulting array is left-padded with -1 entries for days with no known score
