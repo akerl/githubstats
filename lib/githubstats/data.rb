@@ -67,7 +67,7 @@ module GithubStats
 
     def streaks
       streaks = @raw.each_with_object(Array.new(1, [])) do |point, acc|
-        point.score == 0 ? acc << [] : acc.last << point
+        point.score.zero? ? acc << [] : acc.last << point
       end
       streaks.reject!(&:empty?)
       streaks
@@ -124,7 +124,7 @@ module GithubStats
     # They only consider the first 3 or 1, based on the mean and max of the set
 
     def gh_outliers
-      outliers.take((6 > max.score - mean || 15 > max.score) ? 1 : 3)
+      outliers.take(6 > max.score - mean || 15 > max.score ? 1 : 3)
     end
 
     ##

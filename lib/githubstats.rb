@@ -67,7 +67,7 @@ module GithubStats
     ##
     # Adjust respond_to? to properly respond with patched method_missing
 
-    def respond_to?(method, include_private = false)
+    def respond_to_missing?(method, include_private = false)
       load_data if @last_updated.nil?
       super || @data.respond_to?(method, include_private)
     end
