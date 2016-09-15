@@ -2,6 +2,8 @@
 require 'curb'
 require 'json'
 require 'nokogiri'
+require 'date'
+require 'basiccache'
 
 ##
 # Rugged is used if available to look up the user's Github username
@@ -36,6 +38,8 @@ module GithubStats
   ##
   # User object
   class User
+    include MethodCacher
+
     attr_reader :name, :url, :data, :last_updated
 
     ##
@@ -46,6 +50,8 @@ module GithubStats
       @name = params[:name] || guess_user
       @url = (params[:url] || DEFAULT_URL) % @name
       @last_updated = nil
+      enable_caching [:streak, :longest_streak, :streaks, :real_streak,
+                      :real_streak_start]
     end
 
     ##
@@ -55,6 +61,29 @@ module GithubStats
       "Contributions from #{@name}"
     end
     alias inspect to_s
+
+    ##
+    # Set a custom streaks value that takes into account GitHub,
+    # which makes available streak data for longer than a year
+
+    def streak
+      return [] if streaks.empty?
+      streaks.last.last.date >= Date.today - 1 ? streaks.last : []
+    end
+
+    def streaks
+      naive = data.streaks
+      return naive if naive.last.size < 365
+      [real_streak]
+    end
+
+    ##
+    # Set a custom longest_streak to account for the overriden streak
+
+    def longest_streak
+      return data.longest_streak if data.longest_streak.size < 365
+      streak
+    end
 
     ##
     # Lazy loader for data
@@ -92,10 +121,30 @@ module GithubStats
     end
 
     ##
+    # Set a custom longest_streak that takes into account GitHub,
+    # which reports full length but only gives data for a year
+
+    def real_streak_start(chart_start)
+      res = GithubStats::Data.new download(chart_start.strftime('%Y-%m-%d'))
+      last_streak_start = res.streaks.last.first.date
+      new_chart_start = res.raw.first.date
+      return last_streak_start unless last_streak_start == new_chart_start
+      real_streak_start(new_chart_start)
+    end
+
+    def real_streak
+      existing = data.streaks.last
+      first_date = existing.first.date
+      extra_size = (first_date - real_streak_start(first_date))
+      [-1] * extra_size + existing
+    end
+
+    ##
     # Downloads new data from Github
 
-    def download
-      svg = Curl::Easy.perform(@url).body_str
+    def download(from = nil)
+      url = from ? @url + "?from=#{from}" : @url
+      svg = Curl::Easy.perform(url).body_str
       html = Nokogiri::HTML(svg)
       html.css('.day').map do |x|
         x.attributes.values_at('data-date', 'data-count').map(&:value)

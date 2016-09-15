@@ -1,3 +1,7 @@
+# 1.3.0 / 2016-09-14
+
+* [FEATURE] Re-adds support for streak lookups longer than 366 days from GitHub, now that they've brought back older commit info
+
 # 1.2.0 / 2016-05-19
 
 * [BUGFIX] Remove support for streak lookup longer than 366 days from GitHub, since they removed display of longer streaks. :(
