@@ -73,7 +73,7 @@ module GithubStats
 
     def streaks
       naive = data.streaks
-      return naive if naive.last.size < 365
+      return naive if naive.last.nil? || naive.last.size < 365
       [real_streak]
     end
 
