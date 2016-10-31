@@ -38,7 +38,9 @@ module GithubStats
     # The data as a hash where the keys are dates and values are scores
 
     def to_h
-      @raw.reduce(Hash.new(0)) { |a, e| a.merge(e.date => e.score) }
+      @raw.reduce(Hash.new(0)) do |acc, elem|
+        acc.merge(elem.date => elem.score)
+      end
     end
 
     ##
@@ -107,7 +109,9 @@ module GithubStats
     # The standard variance (two pass)
 
     def std_var
-      first_pass = @raw.reduce(0) { |a, e| (e.score.to_f - mean)**2 + a }
+      first_pass = @raw.reduce(0) do |acc, elem|
+        (elem.score.to_f - mean)**2 + acc
+      end
       Math.sqrt(first_pass / (@raw.size - 1))
     end
 
@@ -149,7 +153,9 @@ module GithubStats
 
     def quartiles
       quartiles = Array.new(5) { [] }
-      @raw.reduce(quartiles) { |a, e| a[quartile(e.score)] << e && a }
+      @raw.each_with_object(quartiles) do |elem, acc|
+        acc[quartile(elem.score)] << elem
+      end
     end
 
     ##
