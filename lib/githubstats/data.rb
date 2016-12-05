@@ -80,7 +80,7 @@ module GithubStats
 
     def longest_streak
       return [] if streaks.empty?
-      streaks.max { |a, b| a.length <=> b.length }
+      streaks.max_by(&:length)
     end
 
     ##
@@ -95,7 +95,7 @@ module GithubStats
     # The highest scoring day
 
     def max
-      @raw.max { |a, b| a.score <=> b.score }
+      @raw.max_by(&:score)
     end
 
     ##
