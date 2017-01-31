@@ -1,2 +1,4 @@
 Encoding:
     Enabled: false
+Metrics/BlockLength:
+    Enabled: false
