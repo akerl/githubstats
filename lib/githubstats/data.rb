@@ -30,8 +30,8 @@ module GithubStats
 
     def initialize(data)
       @raw = data.map { |d, s| Datapoint.new(Date.parse(d), s.to_i) }
-      enable_caching [:to_h, :today, :streaks, :longest_streak, :streak, :max,
-                      :mean, :std_var, :quartile_boundaries, :quartiles]
+      enable_caching %i[to_h today streaks longest_streak streak max mean
+                        std_var quartile_boundaries quartiles]
     end
 
     ##

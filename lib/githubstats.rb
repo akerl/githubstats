@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'curb'
 require 'json'
 require 'nokogiri'
@@ -50,8 +51,8 @@ module GithubStats
       @name = params[:name] || guess_user
       @url = (params[:url] || DEFAULT_URL) % @name
       @last_updated = nil
-      enable_caching [:streak, :longest_streak, :streaks, :real_streak,
-                      :real_streak_start]
+      enable_caching %i[streak longest_streak streaks real_streak
+                        real_streak_start]
     end
 
     ##
