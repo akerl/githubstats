@@ -128,7 +128,7 @@ module GithubStats
     # They only consider the first 3 or 1, based on the mean and max of the set
 
     def gh_outliers
-      outliers.take(6 > max.score - mean || 15 > max.score ? 1 : 3)
+      outliers.take(max.score - mean < 6 || max.score < 15 ? 1 : 3)
     end
 
     ##
