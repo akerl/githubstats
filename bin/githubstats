@@ -3,7 +3,7 @@
 require 'githubstats'
 require 'optparse'
 
-opt = OptionParser.new do |opts|
+OptionParser.new do |opts|
   opts.banner = 'Usage: githubstats [-h] [USER]'
   opts.on_tail('-v', '--version', 'Show version') do
     puts GithubStats::VERSION
