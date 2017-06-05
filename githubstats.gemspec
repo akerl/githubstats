@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'curb', '~> 0.9.0'
   s.add_runtime_dependency 'basiccache', '~> 1.0.0'
-  s.add_runtime_dependency 'nokogiri', '~> 1.7.0'
+  s.add_runtime_dependency 'nokogiri', '~> 1.8.0'
 
   s.add_development_dependency 'timecop', '~> 0.8.0'
   s.add_development_dependency 'rubocop', '~> 0.49.0'
