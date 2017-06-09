@@ -1,3 +1,8 @@
+# 1.4.0 / 2017-06-09
+
+* [ENHANCEMENT] Cache more data methods
+* [ENHANCEMENT] Upgrade to latest Nokogiri minor release
+
 # 1.3.0 / 2016-09-14
 
 * [FEATURE] Re-adds support for streak lookups longer than 366 days from GitHub, now that they've brought back older commit info
