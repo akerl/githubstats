@@ -41,7 +41,7 @@ module GithubStats
   class User
     include MethodCacher
 
-    attr_reader :name, :url, :data, :last_updated
+    attr_reader :name, :url, :last_updated
 
     ##
     # Creates a new user object
@@ -150,7 +150,7 @@ module GithubStats
       html.css('.day').map do |x|
         x.attributes.values_at('data-date', 'data-count').map(&:value)
       end
-    rescue
+    rescue StandardError
       raise 'Unable to load data from Github'
     end
 
