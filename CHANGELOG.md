@@ -1,3 +1,7 @@
+# 2.0.0 / 2017-09-29
+
+* [BUGFIX] Fail cleanly if Github responds with a bad HTTP code
+
 # 1.4.0 / 2017-06-09
 
 * [ENHANCEMENT] Cache more data methods

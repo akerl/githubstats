@@ -145,13 +145,13 @@ module GithubStats
 
     def download(from = nil)
       url = from ? @url + "?from=#{from}" : @url
-      svg = Curl::Easy.perform(url).body_str
-      html = Nokogiri::HTML(svg)
+      res = Curl::Easy.perform(url)
+      code = res.response_code
+      raise("Failed loading data from GitHub: #{url} #{code}") if code != 200
+      html = Nokogiri::HTML(res.body_str)
       html.css('.day').map do |x|
         x.attributes.values_at('data-date', 'data-count').map(&:value)
       end
-    rescue StandardError
-      raise 'Unable to load data from Github'
     end
 
     def method_missing(sym, *args, &block)
