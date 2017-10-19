@@ -39,7 +39,7 @@ describe GithubStats do
       expect(named_user.last_updated).to be_nil
       named_user.data
       expect(named_user.instance_variables).to include(:@data)
-      expect(named_user.last_updated).to be_an_instance_of DateTime
+      expect(named_user.last_updated).to be_an_instance_of Time
     end
 
     it 'raises an exception if it cannot load data' do

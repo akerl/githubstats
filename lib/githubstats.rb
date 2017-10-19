@@ -118,7 +118,7 @@ module GithubStats
 
     def load_data
       @data = GithubStats::Data.new download
-      @last_updated = DateTime.now
+      @last_updated = Time.now
     end
 
     ##

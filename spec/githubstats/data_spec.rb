@@ -7,8 +7,8 @@ describe GithubStats do
   end
 
   it 'defines a Datapoint object' do
-    a = GithubStats::Datapoint.new(DateTime.now, 4)
-    expect(a.date).to be_an_instance_of DateTime
+    a = GithubStats::Datapoint.new(Time.now, 4)
+    expect(a.date).to be_an_instance_of Time
     expect(a.score).to eql 4
   end
 
