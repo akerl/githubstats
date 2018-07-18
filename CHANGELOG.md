@@ -1,3 +1,10 @@
+# 3.0.0 / 2018-07-18
+
+* [BUGFIX] Update to work with recent GitHub changes for historic streak lookup API
+* [FEATURE] Historic GitHub streaks now show actual stats instead of `-1` placeholders
+* [FEATURE] It is now possible to convert a datapoint back to its original format with `.to_a`
+* [FEATURE] Added `.start_date` and `.end_date` to Data object
+
 # 2.0.0 / 2017-09-29
 
 * [BUGFIX] Fail cleanly if Github responds with a bad HTTP code
