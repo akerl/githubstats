@@ -35,7 +35,8 @@ module GithubStats
     def initialize(data)
       @raw = data.map { |d, s| Datapoint.new(Date.parse(d), s.to_i) }
       enable_caching %i[to_h today streaks longest_streak streak max mean
-                        std_var quartile_boundaries quartiles]
+                        std_var quartile_boundaries quartiles start_date
+                        end_date]
     end
 
     ##
@@ -45,6 +46,19 @@ module GithubStats
       @raw.reduce(Hash.new(0)) do |acc, elem|
         acc.merge(elem.date => elem.score)
       end
+    end
+
+    ##
+    # The start of the dataset
+
+    def start_date
+      @raw.first.date
+    end
+
+    ##
+    # The end of the dataset
+    def end_date
+      @raw.last.date
     end
 
     ##

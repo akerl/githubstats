@@ -129,8 +129,7 @@ module GithubStats
       old_data = partial_streak.map(&:to_a)
       new_stats = GithubStats::Data.new(new_data + old_data)
       partial_streak = new_stats.streaks.last
-      new_start = new_stats.raw.first.date
-      return partial_streak unless partial_streak.first.date == new_start
+      return partial_streak if partial_streak.first.date != new_stats.start_date
       real_streak_rewind partial_streak
     end
 
