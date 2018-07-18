@@ -51,8 +51,7 @@ module GithubStats
       @name = params[:name] || guess_user
       @url = (params[:url] || DEFAULT_URL) % @name
       @last_updated = nil
-      enable_caching %i[streak longest_streak streaks real_streak
-                        real_streak_start]
+      enable_caching %i[streak longest_streak streaks]
     end
 
     ##
@@ -122,29 +121,28 @@ module GithubStats
     end
 
     ##
-    # Set a custom longest_streak that takes into account GitHub,
-    # which reports full length but only gives data for a year
+    # Set a custom longest_streak that takes into account GitHub's
+    # historical records
 
-    def real_streak_start(chart_start)
-      res = GithubStats::Data.new download(chart_start.strftime('%Y-%m-%d'))
-      last_streak_start = res.streaks.last.first.date
-      new_chart_start = res.raw.first.date
-      return last_streak_start unless last_streak_start == new_chart_start
-      real_streak_start(new_chart_start)
+    def real_streak_rewind(partial_streak)
+      new_data = download(partial_streak.first.date - 1)
+      old_data = partial_streak.map(&:to_a)
+      new_stats = GithubStats::Data.new(new_data + old_data)
+      partial_streak = new_stats.streaks.last
+      new_start = new_stats.raw.first.date
+      return partial_streak unless partial_streak.first.date == new_start
+      real_streak_rewind partial_streak
     end
 
     def real_streak
-      existing = data.streaks.last
-      first_date = existing.first.date
-      extra_size = (first_date - real_streak_start(first_date))
-      [-1] * extra_size + existing
+      @real_streak ||= real_streak_rewind(data.streaks.last)
     end
 
     ##
     # Downloads new data from Github
 
-    def download(from = nil)
-      url = from ? @url + "?from=#{from}" : @url
+    def download(to_date = nil)
+      url = to_date ? @url + "?to=#{to_date.strftime('%Y-%m-%d')}" : @url
       res = Curl::Easy.perform(url)
       code = res.response_code
       raise("Failed loading data from GitHub: #{url} #{code}") if code != 200

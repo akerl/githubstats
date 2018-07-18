@@ -12,7 +12,11 @@ module GithubStats
   ##
   # Helper struct for defining datapoints
 
-  Datapoint = Struct.new(:date, :score)
+  Datapoint = Struct.new(:date, :score) do
+    def to_a
+      [date.strftime('%Y-%m-%d'), score.to_s]
+    end
+  end
 
   ##
   # Data class for calculations
