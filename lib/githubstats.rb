@@ -73,7 +73,7 @@ module GithubStats
 
     def streaks
       naive = data.streaks
-      return naive if naive.last.nil? || naive.last.size < 365
+      return naive if naive.last.nil? || naive.last.size < 364
       [real_streak]
     end
 
@@ -81,7 +81,7 @@ module GithubStats
     # Set a custom longest_streak to account for the overriden streak
 
     def longest_streak
-      return data.longest_streak if data.longest_streak.size < 365
+      return data.longest_streak if data.longest_streak.size < 364
       streak
     end
 
