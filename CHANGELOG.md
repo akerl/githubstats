@@ -1,3 +1,7 @@
+# 3.0.1 / 2018-08-19
+
+* [BUGFIX] Fix cap used to decide when to use real_streak GitHub polling
+
 # 3.0.0 / 2018-07-18
 
 * [BUGFIX] Update to work with recent GitHub changes for historic streak lookup API
