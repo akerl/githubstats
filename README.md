@@ -2,7 +2,6 @@ GithubStats
 =========
 
 [![Gem Version](https://img.shields.io/gem/v/githubstats.svg)](https://rubygems.org/gems/githubstats)
-[![Dependency Status](https://img.shields.io/gemnasium/akerl/githubstats.svg)](https://gemnasium.com/akerl/githubstats)
 [![Build Status](https://img.shields.io/circleci/project/akerl/githubstats/master.svg)](https://circleci.com/gh/akerl/githubstats)
 [![Coverage Status](https://img.shields.io/codecov/c/github/akerl/githubstats.svg)](https://codecov.io/github/akerl/githubstats)
 [![Code Quality](https://img.shields.io/codacy/d25d2521df3f4a6b8369edd419438d97.svg)](https://www.codacy.com/app/akerl/githubstats)
