@@ -180,7 +180,7 @@ module GithubStats
     # Return the quartile of a given score
 
     def quartile(score)
-      return nil if score < 0 || score > max.score
+      return nil if score.negative? || score > max.score
       quartile_boundaries.count { |bound| score > bound }
     end
 

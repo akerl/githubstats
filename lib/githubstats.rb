@@ -34,7 +34,7 @@ module GithubStats
   ##
   # Default URL for grabbing data
 
-  DEFAULT_URL = "#{DEFAULT_HOST}/users/%s/contributions".freeze
+  DEFAULT_URL = "#{DEFAULT_HOST}/users/%s/contributions"
 
   ##
   # User object
