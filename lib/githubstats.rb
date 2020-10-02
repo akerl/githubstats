@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'curb'
 require 'json'
 require 'nokogiri'
 require 'date'

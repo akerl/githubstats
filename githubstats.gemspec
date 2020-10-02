@@ -19,7 +19,6 @@ Gem::Specification.new do |s|
   s.executables = ['githubstats']
 
   s.add_runtime_dependency 'basiccache', '~> 1.0.0'
-  s.add_runtime_dependency 'curb', '~> 0.9.0'
   s.add_runtime_dependency 'nokogiri', '~> 1.10.8'
 
   s.add_development_dependency 'codecov', '~> 0.1.1'
