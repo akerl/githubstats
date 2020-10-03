@@ -147,7 +147,7 @@ module GithubStats
       http.use_ssl = true
       res = http.get(uri.request_uri)
       code = res.code
-      raise("Failed loading data from GitHub: #{url} #{code}") if code != 200
+      raise("Failed loading data from GitHub: #{url} #{code}") if code != "200"
       html = Nokogiri::HTML(res.body)
       html.css('.day').map do |x|
         x.attributes.values_at('data-date', 'data-count').map(&:value)
