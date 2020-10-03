@@ -142,6 +142,7 @@ module GithubStats
 
     def download(to_date = nil)
       url = to_date ? @url + "?to=#{to_date.strftime('%Y-%m-%d')}" : @url
+      # https://stackoverflow.com/a/5786863/6456163
       uri = URI.parse(url)
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
