@@ -2,7 +2,7 @@
 
 require 'json'
 require 'nokogiri'
-require 'net/http'
+require 'httparty'
 require 'date'
 require 'basiccache'
 
@@ -142,7 +142,7 @@ module GithubStats
 
     def download(to_date = nil)
       url = to_date ? @url + "?to=#{to_date.strftime('%Y-%m-%d')}" : @url
-      res = Net::HTTP.get_response(url, '/')
+      res = HTTParty.get(url)
       code = res.code
       raise("Failed loading data from GitHub: #{url} #{code}") if code != 200
       html = Nokogiri::HTML(res.body)
