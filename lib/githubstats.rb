@@ -142,9 +142,7 @@ module GithubStats
 
     def download(to_date = nil)
       url = to_date ? @url + "?to=#{to_date.strftime('%Y-%m-%d')}" : @url
-      net = Net::HTTP.new(url, 443)
-      net.use_ssl = true
-      res = net.get_response("/")
+      res = Net::HTTP.get(URI(url))
       code = res.code
       raise("Failed loading data from GitHub: #{url} #{code}") if code != 200
       html = Nokogiri::HTML(res.body)
