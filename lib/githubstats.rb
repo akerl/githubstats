@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'curb'
 require 'json'
 require 'nokogiri'
+require 'net/http'
 require 'date'
 require 'basiccache'
 
@@ -142,10 +142,14 @@ module GithubStats
 
     def download(to_date = nil)
       url = to_date ? @url + "?to=#{to_date.strftime('%Y-%m-%d')}" : @url
-      res = Curl::Easy.perform(url)
-      code = res.response_code
-      raise("Failed loading data from GitHub: #{url} #{code}") if code != 200
-      html = Nokogiri::HTML(res.body_str)
+      # https://stackoverflow.com/a/5786863/6456163
+      uri = URI.parse(url)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      res = http.get(uri.request_uri)
+      code = res.code
+      raise("Failed loading data from GitHub: #{url} #{code}") if code != "200"
+      html = Nokogiri::HTML(res.body)
       html.css('.day').map do |x|
         x.attributes.values_at('data-date', 'data-count').map(&:value)
       end
