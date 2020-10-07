@@ -1,3 +1,7 @@
+# 3.1.0 / 2020-10-06
+
+* [FEATURE] Remove curb dependency, which allows githubstats to work on Windows systems. Thanks @ajmeese7!
+
 # 3.0.1 / 2018-08-19
 
 * [BUGFIX] Fix cap used to decide when to use real_streak GitHub polling
