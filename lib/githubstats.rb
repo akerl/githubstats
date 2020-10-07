@@ -141,18 +141,22 @@ module GithubStats
     # Downloads new data from Github
 
     def download(to_date = nil)
-      url = to_date ? @url + "?to=#{to_date.strftime('%Y-%m-%d')}" : @url
-      # https://stackoverflow.com/a/5786863/6456163
-      uri = URI.parse(url)
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      res = http.get(uri.request_uri)
-      code = res.code
-      raise("Failed loading data from GitHub: #{url} #{code}") if code != "200"
-      html = Nokogiri::HTML(res.body)
+      resp = request(to_date)
+      html = Nokogiri::HTML(resp)
       html.css('.day').map do |x|
         x.attributes.values_at('data-date', 'data-count').map(&:value)
       end
+    end
+
+    def request(to_date = nil)
+      url = to_date ? @url + "?to=#{to_date.strftime('%Y-%m-%d')}" : @url
+      # https://stackoverflow.com/a/5786863/6456163
+      resp = Net::HTTP.get_response(URI(url))
+      code = resp.code
+      raise("Failed loading data from GitHub: #{url} #{code}") if code != '200'
+      resp.body
+    rescue SocketError
+      raise RuntimeError
     end
 
     def method_missing(sym, *args, &block)

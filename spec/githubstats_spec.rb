@@ -10,7 +10,9 @@ describe GithubStats do
   describe GithubStats::User do
     let(:named_user) { GithubStats::User.new 'akerl' }
     let(:unnamed_user) { GithubStats::User.new }
-    let(:hash_user) { GithubStats::User.new(name: 'fly', url: 'URL-FOR-%s') }
+    let(:hash_user) do
+      GithubStats::User.new(name: 'fly', url: 'https://URL-%s')
+    end
 
     context 'when created with a string' do
       it 'uses that string as the username' do
@@ -30,7 +32,7 @@ describe GithubStats do
         expect(hash_user.name).to eql 'fly'
       end
       it 'uses the URL from the hash' do
-        expect(hash_user.url).to eql 'URL-FOR-fly'
+        expect(hash_user.url).to eql 'https://URL-fly'
       end
     end
 
