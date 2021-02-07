@@ -120,7 +120,7 @@ module GithubStats
     # The mean score
 
     def mean
-      scores.reduce(:+) / @raw.size.to_f
+      scores.sum / @raw.size.to_f
     end
 
     ##
@@ -197,9 +197,7 @@ module GithubStats
     def _pad(data, index, fill_value, goal)
       mod = index * -2 - 1 # 0 index moves -1 in time, -1 move +1 in time
       point = GithubStats::Datapoint
-      until data[index].date.wday == goal
-        data.insert index, point.new(data[index].date + mod, fill_value)
-      end
+      data.insert index, point.new(data[index].date + mod, fill_value) until data[index].date.wday == goal
       data
     end
   end

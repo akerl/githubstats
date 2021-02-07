@@ -1,3 +1,7 @@
+# 3.2.0 / 2021-02-06
+
+* [BUGFIX] Update to handle GitHub changes to contribution data CSS
+
 # 3.1.0 / 2020-10-06
 
 * [FEATURE] Remove curb dependency, which allows githubstats to work on Windows systems. Thanks @ajmeese7!
