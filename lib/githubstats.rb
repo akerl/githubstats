@@ -145,7 +145,7 @@ module GithubStats
       html = Nokogiri::HTML(resp)
       svg = html.at_css('svg.js-calendar-graph-svg')
       svg.css('.ContributionCalendar-day').map do |x|
-        x.attributes.values_at('data-date', 'data-count').map(&:value)
+        x.attributes.values_at('data-date', 'data-level').map(&:value)
       end
     end
 
