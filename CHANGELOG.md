@@ -1,3 +1,7 @@
+# 3.3.0 / 2023-01-08
+
+* [BUGFIX] Update to handle changes to GitHub contribution chart SVG naming
+
 # 3.2.0 / 2021-02-06
 
 * [BUGFIX] Update to handle GitHub changes to contribution data CSS

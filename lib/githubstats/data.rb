@@ -128,7 +128,7 @@ module GithubStats
 
     def std_var
       first_pass = @raw.reduce(0) do |acc, elem|
-        (elem.score.to_f - mean)**2 + acc
+        ((elem.score.to_f - mean)**2) + acc
       end
       Math.sqrt(first_pass / (@raw.size - 1))
     end
@@ -159,11 +159,11 @@ module GithubStats
       range = (1..top).to_a
       range = [0] * 3 if range.empty?
       mids = (1..3).map do |q|
-        index = q * range.size / 4 - 1
+        index = (q * range.size / 4) - 1
         range[index]
       end
       bounds = (mids + [max.score]).uniq.sort
-      [0] * (5 - bounds.size) + bounds
+      ([0] * (5 - bounds.size)) + bounds
     end
 
     ##
@@ -195,7 +195,7 @@ module GithubStats
     private
 
     def _pad(data, index, fill_value, goal)
-      mod = index * -2 - 1 # 0 index moves -1 in time, -1 move +1 in time
+      mod = (index * -2) - 1 # 0 index moves -1 in time, -1 move +1 in time
       point = GithubStats::Datapoint
       data.insert index, point.new(data[index].date + mod, fill_value) until data[index].date.wday == goal
       data

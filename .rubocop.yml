@@ -1,5 +1,2 @@
 inherit_gem:
   goodcop: .rubocop.yml
-Metrics/BlockLength:
-  Exclude:
-  - 'spec/**/*'
