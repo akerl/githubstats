@@ -2,8 +2,7 @@ GithubStats
 =========
 
 [![Gem Version](https://img.shields.io/gem/v/githubstats.svg)](https://rubygems.org/gems/githubstats)
-[![Build Status](https://img.shields.io/travis/com/akerl/githubstats.svg)](https://travis-ci.com/akerl/githubstats)
-[![Coverage Status](https://img.shields.io/codecov/c/github/akerl/githubstats.svg)](https://codecov.io/github/akerl/githubstats)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/akerl/githubstats/build.yml?branch=main)](https://github.com/akerl/githubstats/actions)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-green.svg)](https://tldrlegal.com/license/mit-license)
 
 Grabs Github contribution statistics and presents it in an easily consumable format.
