@@ -143,7 +143,7 @@ module GithubStats
     def download(to_date = nil)
       resp = request(to_date)
       html = Nokogiri::HTML(resp)
-      svg = html.at_css('svg.js-calendar-graph-svg')
+      svg = html.css('table.ContributionCalendar-grid td[data-date]')
       svg.css('.ContributionCalendar-day').map do |x|
         x.attributes.values_at('data-date', 'data-level').map(&:value)
       end
