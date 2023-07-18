@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.executables = ['githubstats']
 
   s.add_runtime_dependency 'basiccache', '~> 1.0.0'
-  s.add_runtime_dependency 'nokogiri', '~> 1.13.10'
+  s.add_runtime_dependency 'nokogiri', '~> 1.15.3'
 
   s.add_development_dependency 'goodcop', '~> 0.9.7'
   s.add_development_dependency 'timecop', '~> 0.9.6'
