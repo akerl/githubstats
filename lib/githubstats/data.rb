@@ -33,7 +33,7 @@ module GithubStats
     # Create a data object and turn on caching
 
     def initialize(data)
-      @raw = data.map { |d, s| Datapoint.new(Date.parse(d), s.to_i) }
+      @raw = data.map { |d, s| Datapoint.new(Date.parse(d), s.to_i) }.sort_by(&:date)
       enable_caching %i[to_h today streaks longest_streak streak max mean
                         std_var quartile_boundaries quartiles start_date
                         end_date]
