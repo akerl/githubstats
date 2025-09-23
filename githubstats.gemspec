@@ -17,10 +17,10 @@ Gem::Specification.new do |s|
   s.files       = `git ls-files`.split
   s.executables = ['githubstats']
 
-  s.add_runtime_dependency 'basiccache', '~> 1.0.0'
-  s.add_runtime_dependency 'nokogiri', '~> 1.15.3'
+  s.add_dependency 'basiccache', '~> 1.0.0'
+  s.add_dependency 'nokogiri', '~> 1.15.3'
 
-  s.add_development_dependency 'goodcop', '~> 0.9.7'
+  s.add_development_dependency 'goodcop', '~> 0.9.9'
   s.add_development_dependency 'timecop', '~> 0.9.6'
   s.metadata['rubygems_mfa_required'] = 'true'
 end
